@@ -78,7 +78,7 @@ public class ImageEraser extends View{
 				mImgBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 				//mImgBitmap = BitmapFactory.decodeResource(res, R.drawable.test_img, options);
 				testCanvas = new Canvas(mImgBitmap);
-				testCanvas.drawARGB(50, 0, 255, 255);
+				testCanvas.drawARGB(200, 255, 255, 255);
 				if (mImgBitmap == null) {
 					return false;
 				} else {
