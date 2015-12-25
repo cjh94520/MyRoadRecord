@@ -11,5 +11,10 @@
         android:padding="@dimen/base_padding"
         android:background="@color/light">
     </RelativeLayout>
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="click"/>
 
 </LinearLayout>
