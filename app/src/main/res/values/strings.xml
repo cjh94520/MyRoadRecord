@@ -11,4 +11,5 @@
     <string name="title_activity_agreement">AgreementActivity</string>
 
     <string name="register">注册</string>
+    <string name="invalid_phone">无效的手机号码</string>
 </resources>

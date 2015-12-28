@@ -3,6 +3,8 @@ package com.smartman.myroadrecord.ui;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
+import org.xutils.common.util.LogUtil;
+
 /**
  * Created by jiahui.chen on 2015/12/28.
  */
@@ -17,7 +19,9 @@ public class TimeCount extends CountDownTimer {
     @Override
     public void onTick(long millisUntilFinished) {
         timeView.setEnabled(false);
+        LogUtil.d(millisUntilFinished / 1000 + "秒后重发");
         timeView.setText(millisUntilFinished / 1000 + "秒后重发");
+
     }
 
     @Override

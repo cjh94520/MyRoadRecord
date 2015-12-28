@@ -1,7 +1,6 @@
 package com.smartman.myroadrecord.account.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,8 +9,10 @@ import android.widget.Toast;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.activity.BaseActivity;
 import com.smartman.myroadrecord.ui.TimeCount;
+import com.smartman.myroadrecord.utils.ResourceUtil;
 import com.smartman.myroadrecord.utils.ValidUtil;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -47,22 +48,25 @@ public class RegisterActivity extends BaseActivity {
     private void requestCodeClick(View view) {
         String phone = phoneText.getText().toString();
         if (!ValidUtil.isValidMobilePhone(phone)) {
-            Toast.makeText(RegisterActivity.this, "无效的手机号", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, ResourceUtil.getString(R.string.invalid_phone), Toast.LENGTH_SHORT).show();
             return;
         }
+        //
+        // 插入服务器判断手机号是否已经注册
+        //
         TimeCount timeCount = new TimeCount(60000, 1000, requestCodeButton);
         timeCount.start();
         QJLinkManager.getInstance(RegisterActivity.this).requestPassword(phone, new OnLoadDataListener() {
             @Override
             public void onSuccess(String s) {
                 requestCodeButton.setEnabled(true);
-                Log.i(TAG, s);
+                LogUtil.d(s);
             }
 
             @Override
             public void onError(String s) {
                 requestCodeButton.setEnabled(true);
-                Log.i(TAG, s);
+                LogUtil.d(s);
             }
         });
     }
@@ -74,12 +78,12 @@ public class RegisterActivity extends BaseActivity {
         QJLinkManager.getInstance(RegisterActivity.this).requestLogin(phone, code, new OnLoadDataListener() {
             @Override
             public void onSuccess(String s) {
-                Log.i(TAG, s);
+                LogUtil.d(s);
             }
 
             @Override
             public void onError(String s) {
-                Log.i(TAG, s);
+                LogUtil.d(s);
             }
         });
     }
