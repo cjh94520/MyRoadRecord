@@ -12,6 +12,7 @@ import com.smartman.myroadrecord.R;
 
 /**
  * Created by jiahui.chen on 2015/12/28.
+ * 密码输入框
  */
 public class PasswordEditText extends EditText {
     /**

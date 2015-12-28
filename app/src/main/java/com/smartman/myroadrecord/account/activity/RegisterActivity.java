@@ -44,6 +44,7 @@ public class RegisterActivity extends BaseActivity {
 
     }
 
+    //获取验证码事件
     @Event(value = R.id.request_code, type = View.OnClickListener.class)
     private void requestCodeClick(View view) {
         String phone = phoneText.getText().toString();
@@ -71,6 +72,8 @@ public class RegisterActivity extends BaseActivity {
         });
     }
 
+
+    //注册事件
     @Event(value = R.id.complete, type = View.OnClickListener.class)
     private void completeRegisterClick(View view) {
         String phone = phoneText.getText().toString();

@@ -38,6 +38,7 @@ import android.widget.ImageView;
 
 import com.smartman.myroadrecord.R;
 
+//圆形头像ImageView
 public class CircleImageView extends ImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;

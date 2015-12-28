@@ -7,6 +7,7 @@ import org.xutils.common.util.LogUtil;
 
 /**
  * Created by jiahui.chen on 2015/12/28.
+ * 倒计时器
  */
 public class TimeCount extends CountDownTimer {
     private TextView timeView;
