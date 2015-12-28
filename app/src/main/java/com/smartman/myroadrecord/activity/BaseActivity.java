@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.baidu.mobstat.StatService;
 import com.smartman.myroadrecord.R;
 
+import org.xutils.x;
+
 /**
  * Created by jiahui.chen on 2015/12/28.
  */
@@ -24,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        x.view().inject(this);
     }
 
     public ActionBar getMDActionBar() {

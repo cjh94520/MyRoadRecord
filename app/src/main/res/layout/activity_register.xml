@@ -26,13 +26,14 @@
         android:layout_toRightOf="@id/code"
         android:text="获取验证码"/>
 
-    <EditText
+    <com.smartman.myroadrecord.ui.PasswordEditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="请创建6-16位的新密码"
         android:layout_below="@id/code"/>
     <Button
+        android:id="@+id/complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="完成"
