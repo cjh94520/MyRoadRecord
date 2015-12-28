@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:minHeight="?attr/actionBarSize"
+    tools:theme="@style/AppTheme.AppBarOverlay"
+    tools:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    android:layout_height="24dp"
+    android:contentInsetLeft="72dp"
+    android:contentInsetStart="72dp"
+    tools:contentInsetLeft="72dp"
+    tools:contentInsetStart="72dp"
+    >
+
+</android.support.v7.widget.Toolbar>
