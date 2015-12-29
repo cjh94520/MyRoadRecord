@@ -62,7 +62,6 @@
             android:name=".MapActivity"
             android:label="@string/title_activity_map"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TestCodeActivity" />
 
         <!-- 短信验证码 -->
         <meta-data

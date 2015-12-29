@@ -19,7 +19,6 @@ import org.xutils.x;
  * Created by jiahui.chen on 2015/12/28.
  */
 public class BaseActivity extends AppCompatActivity {
-    private static final String TAG = BaseActivity.class.getSimpleName();
 
     private Toolbar mToolbar;
 

@@ -8,7 +8,7 @@ import java.io.InputStream;
  * Created by jiahui.chen on 2015/12/29.
  */
 public class AssetUtil {
-    public String getFromAssets(String fileName) {
+    public static String getFromAssets(String fileName) {
         MyApplication myApplication = MyApplication.getInstance();
         if (myApplication == null || myApplication.getResources() == null) {
             return "";

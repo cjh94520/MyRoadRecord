@@ -1,9 +1,9 @@
 package com.smartman.myroadrecord.account.activity;
 
 import android.os.Bundle;
-import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.style.ClickableSpan;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,8 +27,6 @@ import cn.my7g.qjlink.sdk.http.OnLoadDataListener;
 
 @ContentView(R.layout.activity_register)
 public class RegisterActivity extends BaseActivity {
-    private static final String TAG = RegisterActivity.class.getSimpleName();
-
     @ViewInject(R.id.phone)
     private EditText phoneText;
     @ViewInject(R.id.code)
@@ -56,17 +54,11 @@ public class RegisterActivity extends BaseActivity {
     private void initAgreement() {
         String agreement = ResourceUtil.getString(R.string.register_tip);
         int index = agreement.indexOf("用户使用协议");
-        SpannableString builder = new SpannableString(agreement);
-        //builder.setSpan(new UnderlineSpan(), index, index + 6, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        builder.setSpan(new ClickableSpan() {
-            @Override
-            public void onClick(View widget) {
-                Toast.makeText(RegisterActivity.this,"hello world",Toast.LENGTH_SHORT).show();
-            }
-        },0,2,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        SpannableStringBuilder builder = new SpannableStringBuilder(agreement);
         IntentSpan intentSpan = new IntentSpan(this, IntentSpan.Type.Action, "intent.action.agreement");
         builder.setSpan(intentSpan, index, index + 6, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tipView.setText(builder);
+        tipView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     //获取验证码事件
