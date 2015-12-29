@@ -9,7 +9,7 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.Projection;
 import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.model.LatLng;
-import com.smartman.myroadrecord.ui.ImageEraser;
+import com.smartman.base.ui.ImageEraser;
 
 public class MapActivity extends AppCompatActivity {
     private static final String TAG = MapActivity.class.getSimpleName();

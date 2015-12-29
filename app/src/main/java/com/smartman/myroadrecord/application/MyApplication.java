@@ -1,4 +1,4 @@
-package com.smartman.myroadrecord;
+package com.smartman.myroadrecord.application;
 
 import android.app.Application;
 

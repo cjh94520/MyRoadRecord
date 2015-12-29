@@ -1,4 +1,4 @@
-package com.smartman.myroadrecord.ui;
+package com.smartman.base.ui;
 
 import android.content.Context;
 import android.content.res.Resources;

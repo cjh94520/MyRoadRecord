@@ -1,6 +1,6 @@
-package com.smartman.myroadrecord.utils;
+package com.smartman.base.utils;
 
-import com.smartman.myroadrecord.MyApplication;
+import com.smartman.myroadrecord.application.MyApplication;
 
 /**
  * Created by jiahui.chen on 2015/12/28.

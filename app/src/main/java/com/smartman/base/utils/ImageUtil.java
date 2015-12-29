@@ -1,4 +1,4 @@
-package com.smartman.myroadrecord.utils;
+package com.smartman.base.utils;
 
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;

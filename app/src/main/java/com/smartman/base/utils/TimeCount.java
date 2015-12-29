@@ -1,4 +1,4 @@
-package com.smartman.myroadrecord.ui;
+package com.smartman.base.utils;
 
 import android.os.CountDownTimer;
 import android.widget.TextView;

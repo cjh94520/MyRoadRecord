@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.activity.BaseActivity;
-import com.smartman.myroadrecord.ui.TimeCount;
-import com.smartman.myroadrecord.utils.IntentSpan;
-import com.smartman.myroadrecord.utils.ResourceUtil;
-import com.smartman.myroadrecord.utils.ValidUtil;
+import com.smartman.base.utils.TimeCount;
+import com.smartman.base.utils.IntentSpan;
+import com.smartman.base.utils.ResourceUtil;
+import com.smartman.base.utils.ValidUtil;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
