@@ -1,4 +1,4 @@
-package com.smartman.myroadrecord.account.activity;
+package com.smartman.myroadrecord.module.account.activity;
 
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smartman.myroadrecord.R;
-import com.smartman.myroadrecord.activity.BaseActivity;
+import com.smartman.base.activity.BaseActivity;
 import com.smartman.base.utils.TimeCount;
 import com.smartman.base.utils.IntentSpan;
 import com.smartman.base.utils.ResourceUtil;

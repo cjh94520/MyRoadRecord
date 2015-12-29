@@ -1,15 +1,12 @@
-package com.smartman.myroadrecord.application;
-
-import android.app.Application;
+package com.smartman.myroadrecord.base.application;
 
 import com.baidu.mapapi.SDKInitializer;
-
-import org.xutils.x;
+import com.smartman.base.application.XUtilApplication;
 
 /**
  * Created by jiahui.chen on 2015/12/22.
  */
-public class MyApplication extends Application {
+public class MyApplication extends XUtilApplication {
     private static MyApplication myApplication;
 
     @Override
@@ -18,9 +15,6 @@ public class MyApplication extends Application {
         myApplication = this;
         // 百度地图在使用 SDK 各组间之前初始化 context 信息
         SDKInitializer.initialize(this);
-        //xutils3初始化
-        x.Ext.init(this);
-        x.Ext.setDebug(true);
     }
 
     public static MyApplication getInstance() {

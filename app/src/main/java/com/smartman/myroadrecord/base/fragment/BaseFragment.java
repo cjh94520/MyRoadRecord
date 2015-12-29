@@ -1,4 +1,4 @@
-package com.smartman.myroadrecord.fragment;
+package com.smartman.myroadrecord.base.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;

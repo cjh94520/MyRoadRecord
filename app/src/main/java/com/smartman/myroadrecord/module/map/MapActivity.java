@@ -1,4 +1,4 @@
-package com.smartman.myroadrecord;
+package com.smartman.myroadrecord.module.map;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import com.baidu.mapapi.map.Projection;
 import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.model.LatLng;
 import com.smartman.base.ui.ImageEraser;
+import com.smartman.myroadrecord.R;
 
 public class MapActivity extends AppCompatActivity {
     private static final String TAG = MapActivity.class.getSimpleName();

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.smartman.myroadrecord.MapActivity"
+        tools:context=".module.map.MapActivity"
         tools:showIn="@layout/activity_map">
 
         <com.baidu.mapapi.map.TextureMapView

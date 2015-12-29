@@ -1,10 +1,10 @@
-package com.smartman.myroadrecord.account.activity;
+package com.smartman.myroadrecord.module.account.activity;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.smartman.myroadrecord.R;
-import com.smartman.myroadrecord.activity.BaseActivity;
+import com.smartman.base.activity.BaseActivity;
 import com.smartman.base.utils.AssetUtil;
 
 import org.xutils.view.annotation.ContentView;

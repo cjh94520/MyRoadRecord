@@ -1,6 +1,6 @@
 package com.smartman.base.utils;
 
-import com.smartman.myroadrecord.application.MyApplication;
+import com.smartman.myroadrecord.base.application.MyApplication;
 
 import java.io.InputStream;
 
