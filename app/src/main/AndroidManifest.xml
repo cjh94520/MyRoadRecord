@@ -54,6 +54,7 @@
             android:theme="@style/Base.Theme.AppCompat.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -69,40 +70,46 @@
             android:value="ciijxfink00csnsu3ueavptr5" />
 
         <!-- 百度地图 -->
-         <meta-data
-         android:name="com.baidu.lbsapi.API_KEY"
-         android:value="XGgRWw4aP2F7SGAK9pGVpaMw" />
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="XGgRWw4aP2F7SGAK9pGVpaMw" />
 
         <!-- 百度移动统计 -->
         <meta-data
-        android:name="BaiduMobAd_STAT_ID"
-        android:value="6353ddd91e"/>  
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="6353ddd91e" />
+         
         <meta-data
-        android:name="BaiduMobAd_CHANNEL"
-        android:value="BaiduMarket"/>
+            android:name="BaiduMobAd_CHANNEL"
+            android:value="BaiduMarket" />
         <meta-data
-        android:name="BaiduMobAd_EXCEPTION_LOG"
-        android:value="true"/>
+            android:name="BaiduMobAd_EXCEPTION_LOG"
+            android:value="true" />
         <meta-data
-        android:name="BaiduMobAd_SEND_STRATEGY"
-        android:value="APP_START"/>
+            android:name="BaiduMobAd_SEND_STRATEGY"
+            android:value="APP_START" />
         <meta-data
-        android:name="BaiduMobAd_ONLY_WIFI"
-        android:value="true" />
+            android:name="BaiduMobAd_ONLY_WIFI"
+            android:value="true" />
         <meta-data
-        android:name="BaiduMobAd_CELL_LOCATION"
-        android:value="true"/>
+            android:name="BaiduMobAd_CELL_LOCATION"
+            android:value="true" />
         <meta-data
-        android:name="BaiduMobAd_GPS_LOCATION"
-        android:value="true"/>
+            android:name="BaiduMobAd_GPS_LOCATION"
+            android:value="true" />
         <meta-data
-        android:name="BaiduMobAd_WIFI_LOCATION"
-        android:value="true"/>
+            android:name="BaiduMobAd_WIFI_LOCATION"
+            android:value="true" />
 
         <activity
             android:name=".account.activity.AgreementActivity"
             android:label="@string/title_activity_agreement"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="intent.action.agreement"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,14 +1,19 @@
 package com.smartman.myroadrecord.account.activity;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.activity.BaseActivity;
 import com.smartman.myroadrecord.ui.TimeCount;
+import com.smartman.myroadrecord.utils.IntentSpan;
 import com.smartman.myroadrecord.utils.ResourceUtil;
 import com.smartman.myroadrecord.utils.ValidUtil;
 
@@ -34,6 +39,8 @@ public class RegisterActivity extends BaseActivity {
     private Button requestCodeButton;
     @ViewInject(R.id.complete)
     private Button completeButton;
+    @ViewInject(R.id.register_tip)
+    private TextView tipView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,24 @@ public class RegisterActivity extends BaseActivity {
         this.getMDActionBar().setDisplayHomeAsUpEnabled(true);
         this.getMDActionBar().setTitle(R.string.register);
 
+        //初始化用户协议
+        initAgreement();
+    }
+
+    private void initAgreement() {
+        String agreement = ResourceUtil.getString(R.string.register_tip);
+        int index = agreement.indexOf("用户使用协议");
+        SpannableString builder = new SpannableString(agreement);
+        //builder.setSpan(new UnderlineSpan(), index, index + 6, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                Toast.makeText(RegisterActivity.this,"hello world",Toast.LENGTH_SHORT).show();
+            }
+        },0,2,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        IntentSpan intentSpan = new IntentSpan(this, IntentSpan.Type.Action, "intent.action.agreement");
+        builder.setSpan(intentSpan, index, index + 6, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tipView.setText(builder);
     }
 
     //获取验证码事件
