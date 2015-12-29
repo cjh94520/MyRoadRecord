@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app-settings>
+    <setting type="url_china">
+        <des>中国服务地址</des>
+        <value>http://www.mop.com</value>
+    </setting>
+
+    <setting type="url_test">
+        <des>测试服务地址</des>
+        <value>http://www.baidu.com/</value>
+    </setting>
+
+    <setting type="faqUrl">
+        <des>获取FAQ</des>
+        <value>api/usercare/faqs.html</value>
+    </setting>
+
+    <setting type="submitSuggestion">
+        <des>提交建议</des>
+        <value>api/suggestion/save.json</value>
+    </setting>
+
+    <setting type="submitProblem">
+        <des>提交问题</des>
+        <value>api/problemReports/save.json</value>
+    </setting>
+
+</app-settings>
