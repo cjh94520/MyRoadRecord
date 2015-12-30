@@ -10,6 +10,8 @@ import com.githang.viewpagerindicator.IconPagerAdapter;
 import com.githang.viewpagerindicator.IconTabPageIndicator;
 import com.smartman.base.activity.BaseActivity;
 import com.smartman.myroadrecord.R;
+import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
+import com.smartman.myroadrecord.module.map.fragment.ProvinceListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,31 +41,31 @@ public class MainActivity extends BaseActivity {
     private void initViews() {
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
         mIndicator = (IconTabPageIndicator) findViewById(R.id.indicator);
-        List<TestFragment> fragments = initFragments();
+        List<ViewPageFragment> fragments = initFragments();
         FragmentAdapter adapter = new FragmentAdapter(fragments, getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
         mIndicator.setViewPager(mViewPager);
     }
 
-    private List<TestFragment> initFragments() {
-        List<TestFragment> fragments = new ArrayList<TestFragment>();
+    private List<ViewPageFragment> initFragments() {
+        List<ViewPageFragment> fragments = new ArrayList<ViewPageFragment>();
 
-        TestFragment userFragment = new TestFragment();
+        ProvinceListFragment userFragment = new ProvinceListFragment();
         userFragment.setTitle("时间神殿");
         userFragment.setIconId(R.drawable.tab_user_selector);
         fragments.add(userFragment);
 
-        TestFragment noteFragment = new TestFragment();
+        ViewPageFragment noteFragment = new ViewPageFragment();
         noteFragment.setTitle("探索世界");
         noteFragment.setIconId(R.drawable.tab_record_selector);
         fragments.add(noteFragment);
 
-        TestFragment contactFragment = new TestFragment();
+        ViewPageFragment contactFragment = new ViewPageFragment();
         contactFragment.setTitle("附近");
         contactFragment.setIconId(R.drawable.tab_user_selector);
         fragments.add(contactFragment);
 
-        TestFragment recordFragment = new TestFragment();
+        ViewPageFragment recordFragment = new ViewPageFragment();
         recordFragment.setTitle("我的");
         recordFragment.setIconId(R.drawable.tab_record_selector);
         fragments.add(recordFragment);
@@ -72,9 +74,9 @@ public class MainActivity extends BaseActivity {
     }
 
     class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
-        private List<TestFragment> mFragments;
+        private List<ViewPageFragment> mFragments;
 
-        public FragmentAdapter(List<TestFragment> fragments, FragmentManager fm) {
+        public FragmentAdapter(List<ViewPageFragment> fragments, FragmentManager fm) {
             super(fm);
             mFragments = fragments;
         }

@@ -1,0 +1,66 @@
+package com.smartman.myroadrecord.module.map.fragment;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import com.smartman.myroadrecord.R;
+import com.smartman.myroadrecord.base.adapter.MyRecyclerViewAdapter;
+import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+/**
+ * Created by jiahui.chen on 2015/12/30.
+ */
+@ContentView(R.layout.province_list)
+public class ProvinceListFragment extends ViewPageFragment implements SwipeRefreshLayout.OnRefreshListener, MyRecyclerViewAdapter.OnItemClickListener{
+    @ViewInject(R.id.id_swiperefreshlayout)
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    @ViewInject(R.id.id_recyclerview)
+    private RecyclerView mRecyclerView;
+
+    private RecyclerView.LayoutManager mLayoutManager;
+    private MyRecyclerViewAdapter mRecyclerViewAdapter;
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        configRecyclerView();
+
+        // 刷新时，指示器旋转后变化的颜色
+        //mSwipeRefreshLayout.setColorSchemeResources(R.color.main_blue_light, R.color.main_blue_dark);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+
+    }
+
+    private void configRecyclerView() {
+        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+
+        mRecyclerViewAdapter = new MyRecyclerViewAdapter(getActivity());
+        mRecyclerViewAdapter.setOnItemClickListener(this);
+        mRecyclerView.setAdapter(mRecyclerViewAdapter);
+
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+}
