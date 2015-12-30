@@ -2,19 +2,19 @@ package com.smartman.myroadrecord.base.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.githang.viewpagerindicator.IconPagerAdapter;
 import com.githang.viewpagerindicator.IconTabPageIndicator;
+import com.smartman.base.activity.BaseActivity;
 import com.smartman.myroadrecord.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity {
     private ViewPager mViewPager;
     private IconTabPageIndicator mIndicator;
 
@@ -49,19 +49,23 @@ public class MainActivity extends FragmentActivity {
         List<TestFragment> fragments = new ArrayList<TestFragment>();
 
         TestFragment userFragment = new TestFragment();
-        userFragment.setTitle("用户");
+        userFragment.setTitle("时间神殿");
+        userFragment.setIconId(R.drawable.tab_user_selector);
         fragments.add(userFragment);
 
         TestFragment noteFragment = new TestFragment();
-        noteFragment.setTitle("记事本");
+        noteFragment.setTitle("探索世界");
+        noteFragment.setIconId(R.drawable.tab_record_selector);
         fragments.add(noteFragment);
 
         TestFragment contactFragment = new TestFragment();
-        contactFragment.setTitle("联系人");
+        contactFragment.setTitle("附近");
+        contactFragment.setIconId(R.drawable.tab_user_selector);
         fragments.add(contactFragment);
 
         TestFragment recordFragment = new TestFragment();
-        recordFragment.setTitle("记录");
+        recordFragment.setTitle("我的");
+        recordFragment.setIconId(R.drawable.tab_record_selector);
         fragments.add(recordFragment);
 
         return fragments;

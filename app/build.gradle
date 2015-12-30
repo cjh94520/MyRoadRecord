@@ -49,6 +49,6 @@ dependencies {
     compile 'com.android.support:percent:23.0.+'
     //xutils3
     compile 'org.xutils:xutils:3.1.22'
-    //
+    //ViewPagerIndicator
     compile 'com.githang:iconpagerindicator:1.2'
 }

@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.smartman.base.fragment.BaseFragment;
 import com.smartman.myroadrecord.R;
 
 /**
  * Created by jiahui.chen on 2015/12/30.
  */
-public class TestFragment extends android.support.v4.app.Fragment {
+public class TestFragment extends BaseFragment {
     private String title;
     private int iconId;
 
