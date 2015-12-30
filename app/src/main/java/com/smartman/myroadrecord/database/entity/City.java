@@ -9,7 +9,7 @@ public class City implements Serializable {
     private static final long serialVersionUID = 5023853576178143338L;
 
     public String cityName;  //城市名
-    public int area; //面积，单位平方米
+    public int area; //面积，单位平方公里
     public String provinceName; //省份名
 
     public String getCityName() {
