@@ -11,7 +11,11 @@ import com.githang.viewpagerindicator.IconTabPageIndicator;
 import com.smartman.base.activity.BaseActivity;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
+import com.smartman.myroadrecord.business.mcc.MccInfoMgmt;
+import com.smartman.myroadrecord.business.mcc.bean.MccInfoReturnBean;
 import com.smartman.myroadrecord.module.map.fragment.ProvinceListFragment;
+
+import org.xutils.common.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +87,16 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int i) {
+            if(i==3)
+            {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MccInfoReturnBean bean = new MccInfoMgmt().getMccInfo("460");
+                        LogUtil.d(bean.toString());
+                    }
+                }).start();
+            }
             return mFragments.get(i);
         }
 

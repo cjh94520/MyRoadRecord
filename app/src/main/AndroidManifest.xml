@@ -63,6 +63,11 @@
             android:label="@string/title_activity_map"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- value: 定制环境  Normal Test 请复制参数不要手打 -->
+        <meta-data
+            android:name="DOMAIN_VERSION"
+            android:value="Test"/>
+
         <!-- 短信验证码 -->
         <meta-data
             android:name="QJClientId"

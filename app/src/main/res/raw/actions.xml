@@ -7,22 +7,13 @@
 
     <setting type="url_test">
         <des>测试服务地址</des>
-        <value>http://www.baidu.com/</value>
+        <value>http://usercare-test.tclclouds.com/</value>
     </setting>
 
-    <setting type="faqUrl">
-        <des>获取FAQ</des>
-        <value>api/usercare/faqs.html</value>
-    </setting>
 
-    <setting type="submitSuggestion">
-        <des>提交建议</des>
-        <value>api/suggestion/save.json</value>
-    </setting>
-
-    <setting type="submitProblem">
-        <des>提交问题</des>
-        <value>api/problemReports/save.json</value>
+    <setting type="MccInfo">
+        <des>获取MCC码信息</des>
+        <value>api/countrymcc/data.json</value>
     </setting>
 
 </app-settings>

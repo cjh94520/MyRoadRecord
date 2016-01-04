@@ -14,7 +14,7 @@ public class ManifestUtil {
         Object value = null;
         try {
             applicationInfo = packageManager.getApplicationInfo(
-                    context.getPackageName(), 0);
+                    context.getPackageName(), 128);
             if (applicationInfo != null && applicationInfo.metaData != null) {
                 value = applicationInfo.metaData.get(name);
             }
