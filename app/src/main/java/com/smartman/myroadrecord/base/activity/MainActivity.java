@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import com.githang.viewpagerindicator.IconPagerAdapter;
 import com.githang.viewpagerindicator.IconTabPageIndicator;
 import com.smartman.base.activity.BaseActivity;
+import com.smartman.myroadrecord.NDKTest;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
 import com.smartman.myroadrecord.business.mcc.MccInfoMgmt;
@@ -28,7 +29,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        System.out.println(new NDKTest().getStringFromNative());
+        LogUtil.d(new NDKTest().getStringFromNative());
         initViews();
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -87,8 +89,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int i) {
-            if(i==3)
-            {
+            if (i == 3) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

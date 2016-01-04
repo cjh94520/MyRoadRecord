@@ -23,6 +23,12 @@ android {
         versionCode 1
         versionName "1.0"
         signingConfig signingConfigs.normal
+
+        ndk{
+            moduleName "MyJni"
+            ldLibs "log"
+            abiFilters "armeabi","armeabi-v7a","x86"
+        }
     }
     buildTypes {
         release {
