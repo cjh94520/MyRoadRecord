@@ -1,6 +1,7 @@
 package com.smartman.myroadrecord.module.map.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +19,7 @@ import org.xutils.view.annotation.ViewInject;
  * Created by jiahui.chen on 2015/12/30.
  */
 @ContentView(R.layout.province_list)
-public class ProvinceListFragment extends ViewPageFragment implements SwipeRefreshLayout.OnRefreshListener, MyRecyclerViewAdapter.OnItemClickListener{
+public class ProvinceListFragment extends ViewPageFragment implements SwipeRefreshLayout.OnRefreshListener, MyRecyclerViewAdapter.OnItemClickListener {
     @ViewInject(R.id.id_swiperefreshlayout)
     private SwipeRefreshLayout mSwipeRefreshLayout;
     @ViewInject(R.id.id_recyclerview)
@@ -26,6 +27,7 @@ public class ProvinceListFragment extends ViewPageFragment implements SwipeRefre
 
     private RecyclerView.LayoutManager mLayoutManager;
     private MyRecyclerViewAdapter mRecyclerViewAdapter;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -61,6 +63,15 @@ public class ProvinceListFragment extends ViewPageFragment implements SwipeRefre
 
     @Override
     public void onRefresh() {
-
+        // 刷新时模拟数据的变化
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+                int temp = (int) (Math.random() * 10);
+                mRecyclerViewAdapter.mDatas.add(0, "new" + temp);
+                mRecyclerViewAdapter.notifyDataSetChanged();
+            }
+        }, 1000);
     }
 }
