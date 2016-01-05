@@ -18,15 +18,15 @@ android {
     buildToolsVersion '23.0.2'
     defaultConfig {
         applicationId "com.smartman.myroadrecord"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         signingConfig signingConfigs.normal
 
         ndk{
-            moduleName "MyJni"
-            ldLibs "log"
+            moduleName "ImageBlur"
+            ldLibs "log","jnigraphics"
             abiFilters "armeabi","armeabi-v7a","x86"
         }
     }

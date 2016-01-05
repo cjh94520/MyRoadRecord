@@ -1,6 +1,7 @@
 package com.smartman.myroadrecord.business.mcc;
 
 import com.smartman.base.http.HttpUtil;
+import com.smartman.base.task.TaskException;
 import com.smartman.base.utils.ServerUtil;
 import com.smartman.myroadrecord.business.mcc.bean.MccInfoReturnBean;
 
@@ -19,7 +20,7 @@ public class MccInfoMgmt {
      * @return MccInfoBean
      * @Description: 获取Mcc信息
      */
-    public MccInfoReturnBean getMccInfo(String mcc) {
+    public MccInfoReturnBean getMccInfo(String mcc) throws TaskException{
         String uri = ServerUtil.getServerUrl();
         uri += ServerUtil.getValue("MccInfo");
         RequestParams params = new RequestParams(uri);

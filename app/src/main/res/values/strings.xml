@@ -4,7 +4,7 @@
     <string name="title_activity_toolbar">ToolbarActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_map">MapActivity</string>
-
+    <string name="down_scale">Compressed Image</string>
     <string name="tx_erase">Erase</string>
     <string name="tx_unerase">Un-Erase</string>
     <string name="tx_apply">Apply</string>

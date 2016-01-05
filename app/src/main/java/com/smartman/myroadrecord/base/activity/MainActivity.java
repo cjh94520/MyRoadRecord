@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager;
 import com.githang.viewpagerindicator.IconPagerAdapter;
 import com.githang.viewpagerindicator.IconTabPageIndicator;
 import com.smartman.base.activity.BaseActivity;
-import com.smartman.myroadrecord.NDKTest;
+import com.smartman.base.task.TaskException;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
 import com.smartman.myroadrecord.business.mcc.MccInfoMgmt;
@@ -29,8 +29,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println(new NDKTest().getStringFromNative());
-        LogUtil.d(new NDKTest().getStringFromNative());
         initViews();
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -93,7 +91,12 @@ public class MainActivity extends BaseActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        MccInfoReturnBean bean = new MccInfoMgmt().getMccInfo("460");
+                        MccInfoReturnBean bean = null;
+                        try {
+                            bean = new MccInfoMgmt().getMccInfo("460");
+                        } catch (TaskException e) {
+                            e.printStackTrace();
+                        }
                         LogUtil.d(bean.toString());
                     }
                 }).start();

@@ -23,10 +23,8 @@ public class JsonResponseParser implements ResponseParser {
         try {
             if (resultClass.getSimpleName().equals("String"))
                 return resultClass;
-            Object o =JSON.parseObject(result, resultClass);
-            return o;
+            return JSON.parseObject(result, resultClass);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new TaskException(TaskException.TaskError.resultIllegal.toString());
         }
     }
