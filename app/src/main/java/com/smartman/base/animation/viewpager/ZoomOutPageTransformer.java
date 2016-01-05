@@ -1,4 +1,4 @@
-package com.smartman.myroadrecord.module.account.util;
+package com.smartman.base.animation.viewpager;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;

@@ -10,7 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.smartman.myroadrecord.R;
 import com.smartman.base.blur.fragments.JniBlurBitMapFragment;
 import com.smartman.base.blur.fragments.RSBlurFragment;
-import com.smartman.myroadrecord.module.account.util.ZoomOutPageTransformer;
+import com.smartman.base.animation.viewpager.ZoomOutPageTransformer;
 
 import java.util.ArrayList;
 
