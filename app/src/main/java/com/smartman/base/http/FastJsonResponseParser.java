@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 /**
  * Created by jiahui.chen on 2016/1/4.
  */
-public class JsonResponseParser implements ResponseParser {
+public class FastJsonResponseParser implements ResponseParser {
     @Override
     public void checkResponse(UriRequest request) throws Throwable {
         LogUtil.d("checkResponse");
