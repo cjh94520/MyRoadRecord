@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import com.githang.viewpagerindicator.IconPagerAdapter;
 import com.githang.viewpagerindicator.IconTabPageIndicator;
 import com.smartman.base.activity.BaseActivity;
+import com.smartman.base.animation.viewpager.ZoomOutPageTransformer;
 import com.smartman.base.utils.ResourceUtil;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
@@ -46,6 +47,7 @@ public class MainActivity extends BaseActivity {
         FragmentAdapter adapter = new FragmentAdapter(fragments, getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         mIndicator.setViewPager(mViewPager);
     }
 
