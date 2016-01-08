@@ -7,15 +7,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.smartman.myroadrecord.R;
+import com.smartman.base.animation.viewpager.ZoomOutPageTransformer;
 import com.smartman.base.blur.fragments.JniBlurBitMapFragment;
 import com.smartman.base.blur.fragments.RSBlurFragment;
-import com.smartman.base.animation.viewpager.ZoomOutPageTransformer;
+import com.smartman.myroadrecord.R;
 
 import java.util.ArrayList;
 
-public class UserActivity extends FragmentActivity {
 
+//暂时没用上
+public class UserActivity extends FragmentActivity {
     private CustomPagerAdapter pagerAdapter;
     private ViewPager viewPager;
 

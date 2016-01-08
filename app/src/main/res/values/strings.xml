@@ -13,6 +13,12 @@
     <!-- base框架 模块-->
     <string name="close">关闭</string>
 
+    <!-- 主页 -->
+    <string name="time_record">时间神殿</string>
+    <string name="explore_world">探索世界</string>
+    <string name="nearby">附近</string>
+    <string name="me">我的</string>
+
     <!-- 账户模块 -->
     <string name="register">注册</string>
     <string name="invalid_phone">无效的手机号码</string>
@@ -21,9 +27,11 @@
     <string name="login_tip">Tip:登录账号后，探索地图数据可以同步到服务器，建议用户注册账号，以免数据丢失</string>
     <string name="register_tip">点击[完成]代表你已阅读并同意用户使用协议</string>
     <string name="access">进入</string>
+    <string name="setting">设置</string>
 
     <!-- Exception -->
     <string name="nonenetwork">没有网络连接</string>
     <string name="resultillegal">数据解析出错</string>
     <string name="timeout">网络不给力</string>
+
 </resources>

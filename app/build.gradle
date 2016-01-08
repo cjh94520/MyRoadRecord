@@ -59,4 +59,5 @@ dependencies {
     compile 'com.githang:iconpagerindicator:1.2'
     //cardview
     compile 'com.android.support:cardview-v7:23.1.+'
+    compile 'de.greenrobot:eventbus:2.4.0'
 }

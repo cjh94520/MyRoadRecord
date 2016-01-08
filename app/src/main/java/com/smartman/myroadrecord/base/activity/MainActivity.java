@@ -9,14 +9,11 @@ import android.support.v4.view.ViewPager;
 import com.githang.viewpagerindicator.IconPagerAdapter;
 import com.githang.viewpagerindicator.IconTabPageIndicator;
 import com.smartman.base.activity.BaseActivity;
-import com.smartman.base.task.TaskException;
+import com.smartman.base.utils.ResourceUtil;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
-import com.smartman.myroadrecord.business.mcc.MccInfoMgmt;
-import com.smartman.myroadrecord.business.mcc.bean.MccInfoReturnBean;
+import com.smartman.myroadrecord.module.account.fragment.UserFragment;
 import com.smartman.myroadrecord.module.map.fragment.ProvinceListFragment;
-
-import org.xutils.common.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +45,7 @@ public class MainActivity extends BaseActivity {
         List<ViewPageFragment> fragments = initFragments();
         FragmentAdapter adapter = new FragmentAdapter(fragments, getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
+        mViewPager.setOffscreenPageLimit(4);
         mIndicator.setViewPager(mViewPager);
     }
 
@@ -55,22 +53,22 @@ public class MainActivity extends BaseActivity {
         List<ViewPageFragment> fragments = new ArrayList<ViewPageFragment>();
 
         ProvinceListFragment userFragment = new ProvinceListFragment();
-        userFragment.setTitle("时间神殿");
+        userFragment.setTitle(ResourceUtil.getString(R.string.time_record));
         userFragment.setIconId(R.drawable.tab_user_selector);
         fragments.add(userFragment);
 
         ViewPageFragment noteFragment = new ViewPageFragment();
-        noteFragment.setTitle("探索世界");
+        noteFragment.setTitle(ResourceUtil.getString(R.string.explore_world));
         noteFragment.setIconId(R.drawable.tab_record_selector);
         fragments.add(noteFragment);
 
         ViewPageFragment contactFragment = new ViewPageFragment();
-        contactFragment.setTitle("附近");
+        contactFragment.setTitle(ResourceUtil.getString(R.string.nearby));
         contactFragment.setIconId(R.drawable.tab_user_selector);
         fragments.add(contactFragment);
 
-        ViewPageFragment recordFragment = new ViewPageFragment();
-        recordFragment.setTitle("我的");
+        ViewPageFragment recordFragment = new UserFragment();
+        recordFragment.setTitle(ResourceUtil.getString(R.string.me));
         recordFragment.setIconId(R.drawable.tab_record_selector);
         fragments.add(recordFragment);
 
@@ -87,20 +85,6 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int i) {
-            if (i == 3) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        MccInfoReturnBean bean = null;
-                        try {
-                            bean = new MccInfoMgmt().getMccInfo("460");
-                        } catch (TaskException e) {
-                            e.printStackTrace();
-                        }
-                        LogUtil.d(bean.toString());
-                    }
-                }).start();
-            }
             return mFragments.get(i);
         }
 
