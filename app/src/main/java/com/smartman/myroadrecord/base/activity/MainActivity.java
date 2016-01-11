@@ -16,9 +16,12 @@ import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
 import com.smartman.myroadrecord.module.account.fragment.UserFragment;
 import com.smartman.myroadrecord.module.map.fragment.ProvinceListFragment;
 
+import org.xutils.view.annotation.ContentView;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
     private ViewPager mViewPager;
     private IconTabPageIndicator mIndicator;
@@ -26,7 +29,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         initViews();
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -54,12 +56,12 @@ public class MainActivity extends BaseActivity {
     private List<ViewPageFragment> initFragments() {
         List<ViewPageFragment> fragments = new ArrayList<ViewPageFragment>();
 
-        ProvinceListFragment userFragment = new ProvinceListFragment();
+        ViewPageFragment userFragment = new ViewPageFragment();
         userFragment.setTitle(ResourceUtil.getString(R.string.time_record));
         userFragment.setIconId(R.drawable.tab_user_selector);
         fragments.add(userFragment);
 
-        ViewPageFragment noteFragment = new ViewPageFragment();
+        ViewPageFragment noteFragment = new ProvinceListFragment();
         noteFragment.setTitle(ResourceUtil.getString(R.string.explore_world));
         noteFragment.setIconId(R.drawable.tab_record_selector);
         fragments.add(noteFragment);

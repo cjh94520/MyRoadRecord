@@ -1,21 +1,16 @@
 package com.smartman.myroadrecord.module.account.activity;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.smartman.base.activity.BaseActivity;
 import com.smartman.base.utils.IntentSpan;
 import com.smartman.base.utils.ResourceUtil;
@@ -50,35 +45,12 @@ public class RegisterActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
-            SystemBarTintManager mTintManager = new SystemBarTintManager(this);
-            mTintManager.setStatusBarTintEnabled(true);
-            mTintManager.setNavigationBarTintEnabled(true);
-            mTintManager.setTintColor(0xF00099CC);
-           // mTintManager.setTintDrawable(UIElementsHelper.getGeneralActionBarBackground(this));
-
-        }
-
         //设置action bar
         this.getMDActionBar().setDisplayHomeAsUpEnabled(true);
         this.getMDActionBar().setTitle(R.string.register);
 
         //初始化用户协议
         initAgreement();
-    }
-
-    @TargetApi(19)
-    private void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
     }
 
     private void initAgreement() {
