@@ -2,35 +2,40 @@
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="#c3e9e5"
         android:orientation="vertical"
-        app:layout_heightPercent="90%"
-        app:layout_widthPercent="90%"
-        android:background="#c3e9e5">
+        app:layout_heightPercent="40%"
+        app:layout_marginTopPercent="5%">
 
         <RelativeLayout
             android:id="@+id/lay_img"
-            android:clickable="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
+            android:clickable="true"
             android:orientation="horizontal">
 
             <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="头像"
-                android:layout_centerVertical="true"/>
+                android:textSize="16sp" />
+
             <com.smartman.base.ui.CircleImageView
+                android:id="@+id/img"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/girl"
                 android:layout_alignParentRight="true"
-                />
+                android:src="@drawable/girl" />
 
 
         </RelativeLayout>
@@ -38,26 +43,45 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="#b90f0f"></View>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/lay_name"
-            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:clickable="true"
             android:orientation="horizontal">
 
             <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="昵称"
-                android:layout_gravity="center"/>
+                android:textSize="16sp" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:text="昵称"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="#b90f0f"></View>
 
         <RelativeLayout
@@ -68,11 +92,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="启动记录服务"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="记录服务"
+                android:textSize="16sp" />
 
-            <ToggleButton
+            <Switch
+                android:layout_marginRight="5dp"
+                android:id="@+id/switch_record"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true" />
@@ -81,25 +111,45 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="#b90f0f"></View>
 
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#c3e9e5"
+        android:orientation="vertical"
+        app:layout_heightPercent="12%"
+        app:layout_marginTopPercent="55%">
+
         <LinearLayout
+            android:id="@+id/lay_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/about"
-                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:gravity="left|start|center_vertical"
-                android:text="关于"/>
+                android:text="关于"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="#b90f0f"></View>
 
         <LinearLayout
@@ -109,11 +159,15 @@
 
             <TextView
                 android:id="@+id/exit"
-                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:clickable="true"
                 android:gravity="left|start|center_vertical"
-                android:text="退出"/>
+                android:text="退出"
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 

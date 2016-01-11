@@ -50,10 +50,10 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".module.map.MapActivity"
             android:label="@string/title_activity_map"
@@ -101,23 +101,25 @@
             android:name="BaiduMobAd_WIFI_LOCATION"
             android:value="true" />
 
-        <!-- 账户模块  开始-->
+        <!-- 账户模块  开始 -->
         <activity
             android:name=".module.account.activity.RegisterActivity"
-            android:label="@string/title_activity_register"/>
+            android:label="@string/title_activity_register" />
         <activity
             android:name=".module.account.activity.AgreementActivity"
             android:label="@string/title_activity_agreement"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="intent.action.agreement"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="intent.action.agreement" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".module.account.activity.AccessActivity" />
-        <activity android:name=".module.account.activity.UserDetailActivity"></activity>
-        <activity android:name=".module.account.activity.LoginActivity"></activity>
-        <!-- 账户模块  结束-->
+        <activity android:name=".module.account.activity.UserDetailActivity" />
+        <activity android:name=".module.account.activity.LoginActivity" />
+        <!-- 账户模块  结束 -->
+        <activity android:name=".module.account.activity.AboutActivity"></activity>
     </application>
 
 </manifest>

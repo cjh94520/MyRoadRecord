@@ -73,7 +73,7 @@ public class UserFragment extends ViewPageFragment {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void blur(Bitmap target, View view) {
         Object o;
-        if ((o = cache.get("test")) == null) {
+        if ((o = cache.get("userImg")) == null) {
             float scaleFactor = 8;
             float radius = 20;//
             Bitmap overlay = Bitmap.createBitmap((int) (view.getMeasuredWidth() / scaleFactor),
@@ -86,8 +86,7 @@ public class UserFragment extends ViewPageFragment {
             canvas.drawBitmap(target, 0, 0, paint);
             overlay = FastBlur.doBlurJniBitMap(overlay, (int) radius, true);
             view.setBackground(new BitmapDrawable(getResources(), overlay));
-
-            cache.put("test", overlay);
+            cache.put("userImg", overlay);
         } else {
             view.setBackground(new BitmapDrawable(getResources(), (Bitmap) o));
         }
