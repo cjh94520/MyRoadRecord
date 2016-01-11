@@ -20,8 +20,8 @@ public class TimeCount extends CountDownTimer {
     @Override
     public void onTick(long millisUntilFinished) {
         timeView.setEnabled(false);
-        LogUtil.d(millisUntilFinished / 1000 + "秒后重发");
-        timeView.setText(millisUntilFinished / 1000 + "秒后重发");
+        LogUtil.d(String.valueOf(millisUntilFinished));
+        timeView.setText(millisUntilFinished / 1000  + "秒后重发");
 
     }
 

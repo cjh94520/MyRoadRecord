@@ -118,8 +118,8 @@
         <activity android:name=".module.account.activity.AccessActivity" />
         <activity android:name=".module.account.activity.UserDetailActivity" />
         <activity android:name=".module.account.activity.LoginActivity" />
-        <!-- 账户模块  结束 -->
         <activity android:name=".module.account.activity.AboutActivity"></activity>
+        <!-- 账户模块  结束 -->
     </application>
 
 </manifest>

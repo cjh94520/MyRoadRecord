@@ -47,7 +47,7 @@ public class PasswordEditText extends EditText {
         //获取EditText的DrawableRight,假如没有设置我们就使用默认的图片
         mDrawable = getCompoundDrawables()[2];
         if (mDrawable == null) {
-            mDrawable = getResources().getDrawable(R.drawable.show_pwd);
+            mDrawable = getResources().getDrawable(R.drawable.hide_pwd);
         }
         mDrawable.setBounds(0, 0, mDrawable.getIntrinsicWidth(), mDrawable.getIntrinsicHeight());
         //展示默认图标
