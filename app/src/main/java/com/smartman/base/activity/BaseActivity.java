@@ -42,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
             SystemBarTintManager mTintManager = new SystemBarTintManager(this);
             mTintManager.setStatusBarTintEnabled(true);
             mTintManager.setNavigationBarTintEnabled(true);
-            mTintManager.setTintColor(0xF00099CC);
+            mTintManager.setTintColor(0xF041b3d9);
             // mTintManager.setTintDrawable(UIElementsHelper.getGeneralActionBarBackground(this));
 
         }

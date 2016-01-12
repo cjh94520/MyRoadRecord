@@ -58,22 +58,22 @@ public class MainActivity extends BaseActivity {
 
         ViewPageFragment userFragment = new ViewPageFragment();
         userFragment.setTitle(ResourceUtil.getString(R.string.time_record));
-        userFragment.setIconId(R.drawable.tab_user_selector);
+        userFragment.setIconId(R.drawable.tab_time_selector);
         fragments.add(userFragment);
 
         ViewPageFragment noteFragment = new ProvinceListFragment();
         noteFragment.setTitle(ResourceUtil.getString(R.string.explore_world));
-        noteFragment.setIconId(R.drawable.tab_record_selector);
+        noteFragment.setIconId(R.drawable.tab_explore_selector);
         fragments.add(noteFragment);
 
         ViewPageFragment contactFragment = new ViewPageFragment();
         contactFragment.setTitle(ResourceUtil.getString(R.string.nearby));
-        contactFragment.setIconId(R.drawable.tab_user_selector);
+        contactFragment.setIconId(R.drawable.tab_nearby_selector);
         fragments.add(contactFragment);
 
         ViewPageFragment recordFragment = new UserFragment();
         recordFragment.setTitle(ResourceUtil.getString(R.string.me));
-        recordFragment.setIconId(R.drawable.tab_record_selector);
+        recordFragment.setIconId(R.drawable.tab_me_selector);
         fragments.add(recordFragment);
 
         return fragments;
