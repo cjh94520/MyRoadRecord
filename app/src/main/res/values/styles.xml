@@ -14,6 +14,7 @@
     <style name="MyTabView" parent="TabView">
         <item name="iconWidth">28dp</item>
         <item name="iconHeight">28dp</item>
+        <item name="android:textColor">@drawable/tab_text_selector</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -33,5 +34,25 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
+
+    <!-- 分割线 -->
+    <style name="split_line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:background">@drawable/line</item>
+    </style>
+
+
+    <!-- Switch按钮样式 -->
+    <style name="setting_switch">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:switchMinWidth">14dp</item>
+        <item name="android:textOff">""</item>
+        <item name="android:textOn">""</item>
+        <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="android:track">@drawable/switch_track</item>
+    </style>
 
 </resources>

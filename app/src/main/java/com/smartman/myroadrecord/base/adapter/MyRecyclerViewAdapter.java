@@ -74,8 +74,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHo
             });
 
         }
+        if (position == 0) {
+            holder.mTextView.setText("广东省");
+            holder.imgView.setBackgroundResource(R.drawable.test);
+        } else {
+            holder.mTextView.setText("广东省："+mDatas.get(position));
+            holder.imgView.setBackgroundResource(0);
+        }
 
-        holder.mTextView.setText(mDatas.get(position));
     }
 
     @Override

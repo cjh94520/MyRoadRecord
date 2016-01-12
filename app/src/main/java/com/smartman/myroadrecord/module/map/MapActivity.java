@@ -1,22 +1,20 @@
 package com.smartman.myroadrecord.module.map;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.RelativeLayout;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.Projection;
-import com.baidu.mapapi.map.TextureMapView;
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.MapView;
+import com.smartman.base.activity.BaseActivity;
 import com.smartman.base.ui.ImageEraser;
 import com.smartman.myroadrecord.R;
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity extends BaseActivity {
     private static final String TAG = MapActivity.class.getSimpleName();
     // 地图相关
-    private TextureMapView mMapView;
-    private BaiduMap mBaiduMap;
+    private MapView mapView;
+    private AMap aMap;
+
 
     private ImageEraser mFloatImage = null;
 
@@ -28,28 +26,33 @@ public class MapActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
         // 初始化地图
-        mMapView = (TextureMapView) findViewById(R.id.map);
-        mMapView.showScaleControl(false);
-        mMapView.showZoomControls(false);
-        mBaiduMap = mMapView.getMap();//113.30765,23.120049
-        mBaiduMap.setOnMapLoadedCallback(new BaiduMap.OnMapLoadedCallback() {
-            @Override
-            public void onMapLoaded() {
-                android.graphics.Point point1 = new android.graphics.Point(0, mMapView.getHeight());
-                Log.i(TAG, "Height:" + String.valueOf(mMapView.getHeight()));
-                Projection projection = mBaiduMap.getProjection();
-                if (projection == null) {
-                    Log.i(TAG, "projection is null");
-                    return;
-                }
-                LatLng screenLatLng1 = mBaiduMap.getProjection().fromScreenLocation(point1);
-                Log.i(TAG, "左下角坐标：纬度：" + String.valueOf(screenLatLng1.latitude) + "经度:" + String.valueOf(screenLatLng1.longitude));
-                android.graphics.Point point = new android.graphics.Point(mMapView.getWidth(), 0);
-                Log.i(TAG, "width:" + String.valueOf(mMapView.getWidth()));
-                LatLng screenLatLng = mBaiduMap.getProjection().fromScreenLocation(point);
-                Log.i(TAG, "右上角坐标：纬度：" + String.valueOf(screenLatLng.latitude) + "经度:" + String.valueOf(screenLatLng.longitude));
-            }
-        });
+        mapView = (MapView) findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);// 必须要写
+        aMap = mapView.getMap();
+
+
+//        mMapView = (TextureMapView) findViewById(R.id.map);
+//        mMapView.showScaleControl(false);
+//        mMapView.showZoomControls(false);
+//        mBaiduMap = mMapView.getMap();//113.30765,23.120049
+//        mBaiduMap.setOnMapLoadedCallback(new BaiduMap.OnMapLoadedCallback() {
+//            @Override
+//            public void onMapLoaded() {
+//                android.graphics.Point point1 = new android.graphics.Point(0, mMapView.getHeight());
+//                Log.i(TAG, "Height:" + String.valueOf(mMapView.getHeight()));
+//                Projection projection = mBaiduMap.getProjection();
+//                if (projection == null) {
+//                    Log.i(TAG, "projection is null");
+//                    return;
+//                }
+//                LatLng screenLatLng1 = mBaiduMap.getProjection().fromScreenLocation(point1);
+//                Log.i(TAG, "左下角坐标：纬度：" + String.valueOf(screenLatLng1.latitude) + "经度:" + String.valueOf(screenLatLng1.longitude));
+//                android.graphics.Point point = new android.graphics.Point(mMapView.getWidth(), 0);
+//                Log.i(TAG, "width:" + String.valueOf(mMapView.getWidth()));
+//                LatLng screenLatLng = mBaiduMap.getProjection().fromScreenLocation(point);
+//                Log.i(TAG, "右上角坐标：纬度：" + String.valueOf(screenLatLng.latitude) + "经度:" + String.valueOf(screenLatLng.longitude));
+//            }
+//        });
 
         mFloatImage = new ImageEraser(this);
         mFloatImage.prepare();
@@ -65,24 +68,23 @@ public class MapActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
-        //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
-        mMapView.onDestroy();
+        mapView.onDestroy();
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
-        mMapView.onResume();
+        mapView.onResume();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
-        mMapView.onPause();
+        mapView.onPause();
     }
 
 }

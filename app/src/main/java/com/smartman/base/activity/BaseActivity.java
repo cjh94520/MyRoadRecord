@@ -44,7 +44,6 @@ public class BaseActivity extends AppCompatActivity {
             mTintManager.setNavigationBarTintEnabled(true);
             mTintManager.setTintColor(0xF041b3d9);
             // mTintManager.setTintDrawable(UIElementsHelper.getGeneralActionBarBackground(this));
-
         }
     }
 

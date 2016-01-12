@@ -1,6 +1,5 @@
 package com.smartman.myroadrecord.base.application;
 
-import com.baidu.mapapi.SDKInitializer;
 import com.smartman.base.application.XUtilApplication;
 
 /**
@@ -14,7 +13,7 @@ public class MyApplication extends XUtilApplication {
         super.onCreate();
         myApplication = this;
         // 百度地图在使用 SDK 各组间之前初始化 context 信息
-        SDKInitializer.initialize(this);
+        //SDKInitializer.initialize(this);
     }
 
     public static MyApplication getInstance() {

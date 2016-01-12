@@ -7,7 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.smartman.myroadrecord.module.account.activity.AccessActivity">
+    tools:context="com.smartman.myroadrecord.module.account.activity.AccessActivity"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/img_access"

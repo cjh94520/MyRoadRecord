@@ -12,6 +12,7 @@ import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.adapter.MyRecyclerViewAdapter;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
@@ -53,7 +54,12 @@ public class ProvinceListFragment extends ViewPageFragment implements SwipeRefre
 
     @Override
     public void onItemClick(View view, int position) {
-
+        if(position==0)
+        {
+            View v = view.findViewById(R.id.province_shadow);
+            LogUtil.d("宽度:"+String.valueOf(v.getWidth()));
+            LogUtil.d("高度:"+String.valueOf(v.getHeight()));
+        }
     }
 
     @Override

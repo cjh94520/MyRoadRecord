@@ -16,19 +16,41 @@
     android:id="@+id/id_cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
     app:cardCornerRadius="4dp"
-    app:cardElevation="5dp"
-    app:cardMaxElevation="10dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/id_textview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="30sp" />
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/frame_province"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img_province"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="250dp"/>
+            <View
+                android:id="@+id/province_shadow"
+                android:alpha="0.8"
+                android:background="#938f8f"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+            </View>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/id_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/frame_province"
+            android:text="广东省"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
 
 </android.support.v7.widget.CardView>
