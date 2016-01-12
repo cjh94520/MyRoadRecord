@@ -2,16 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smartman.myroadrecord">
 
-    <!-- 百度地图权限 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--高德地图权限-->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- 短信验证码权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -57,22 +54,24 @@
         <activity
             android:name=".module.map.MapActivity"
             android:label="@string/title_activity_map"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
 
         <!-- value: 定制环境  Normal Test 请复制参数不要手打 -->
         <meta-data
             android:name="DOMAIN_VERSION"
             android:value="Test" />
 
+        <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="86f2f206e9388f4597f695bbcbf51fe3" />
+
         <!-- 短信验证码 -->
         <meta-data
             android:name="QJClientId"
             android:value="ciijxfink00csnsu3ueavptr5" />
-
-        <!-- 百度地图 -->
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="XGgRWw4aP2F7SGAK9pGVpaMw" />
 
         <!-- 百度移动统计 -->
         <meta-data
