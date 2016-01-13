@@ -12,8 +12,6 @@ public class MyApplication extends XUtilApplication {
     public void onCreate() {
         super.onCreate();
         myApplication = this;
-        // 百度地图在使用 SDK 各组间之前初始化 context 信息
-        //SDKInitializer.initialize(this);
     }
 
     public static MyApplication getInstance() {

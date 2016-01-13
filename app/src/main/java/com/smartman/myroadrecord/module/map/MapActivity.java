@@ -3,8 +3,8 @@ package com.smartman.myroadrecord.module.map;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.MapView;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.MapView;
 import com.smartman.base.activity.BaseActivity;
 import com.smartman.base.ui.ImageEraser;
 import com.smartman.myroadrecord.R;

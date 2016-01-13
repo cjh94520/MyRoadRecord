@@ -17,34 +17,25 @@ import com.smartman.myroadrecord.module.account.fragment.UserFragment;
 import com.smartman.myroadrecord.module.map.fragment.ProvinceListFragment;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
+    @ViewInject(R.id.view_pager)
     private ViewPager mViewPager;
+    @ViewInject(R.id.indicator)
     private IconTabPageIndicator mIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViews();
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        Button button = (Button)findViewById(R.id.btn);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                DBUtil.initProvince();
-//            }
-//        });
-
     }
 
     private void initViews() {
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mIndicator = (IconTabPageIndicator) findViewById(R.id.indicator);
         List<ViewPageFragment> fragments = initFragments();
         FragmentAdapter adapter = new FragmentAdapter(fragments, getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
