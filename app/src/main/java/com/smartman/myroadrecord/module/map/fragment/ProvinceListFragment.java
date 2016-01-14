@@ -1,5 +1,6 @@
 package com.smartman.myroadrecord.module.map.fragment;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -7,6 +8,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.adapter.MyRecyclerViewAdapter;
@@ -54,11 +57,21 @@ public class ProvinceListFragment extends ViewPageFragment implements SwipeRefre
 
     @Override
     public void onItemClick(View view, int position) {
-        if(position==0)
-        {
-            View v = view.findViewById(R.id.province_shadow);
-            LogUtil.d("宽度:"+String.valueOf(v.getWidth()));
-            LogUtil.d("高度:"+String.valueOf(v.getHeight()));
+        if (position == 0) {
+            final View v = view.findViewById(R.id.province_shadow);
+            LogUtil.d("宽度:" + String.valueOf(v.getWidth()));
+            LogUtil.d("高度:" + String.valueOf(v.getHeight()));
+            ValueAnimator valueAnimator = ValueAnimator.ofInt(v.getWidth(), 0);
+            valueAnimator.setDuration(5000);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                            (int) (animation.getAnimatedValue()), ViewGroup.LayoutParams.MATCH_PARENT);
+                    v.setLayoutParams(params);
+                }
+            });
+            valueAnimator.start();
         }
     }
 
@@ -80,4 +93,6 @@ public class ProvinceListFragment extends ViewPageFragment implements SwipeRefre
             }
         }, 1000);
     }
+
+
 }

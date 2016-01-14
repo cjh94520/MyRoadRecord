@@ -12,6 +12,7 @@ public class MyApplication extends XUtilApplication {
     public void onCreate() {
         super.onCreate();
         myApplication = this;
+
     }
 
     public static MyApplication getInstance() {
