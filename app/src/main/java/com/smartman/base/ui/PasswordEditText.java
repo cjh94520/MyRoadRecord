@@ -100,11 +100,11 @@ public class PasswordEditText extends EditText {
     protected void setIcon(boolean isShowed) {
         if (isShowed) {
             setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            hidePassword();
+            showPassword();
             isShowPwd = false;
         } else {
             setTransformationMethod(PasswordTransformationMethod.getInstance());
-            showPassword();
+            hidePassword();
             isShowPwd = true;
         }
     }
