@@ -6,45 +6,79 @@
     android:clipToPadding="true"
     android:fitsSystemWindows="true">
 
-    <EditText
-        android:id="@+id/user_id"
+    <RelativeLayout
+        android:id="@+id/lay_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="ID" />
+        android:layout_centerHorizontal="true">
 
-    <EditText
-        android:id="@+id/user_pwd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/user_id"
-        android:hint="password" />
+        <EditText
+            android:id="@+id/user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="ID"
+            android:minWidth="150dp" />
 
-    <Button
-        android:id="@+id/send_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/user_pwd"
-        android:text="@string/login" />
+        <EditText
+            android:id="@+id/user_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_id"
+            android:hint="password"
+            android:minWidth="150dp" />
 
-    <TextView
-        android:id="@+id/txt_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/send_login"
-        android:text="@string/register" />
+        <Button
+            android:id="@+id/send_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_pwd"
+            android:layout_centerHorizontal="true"
+            android:text="@string/login" />
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/txt_forget_pwd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_register"
-        android:text="@string/forget_password" />
+
+    <LinearLayout
+        android:id="@+id/lay_register"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/lay_login"
+        app:layout_heightPercent="8%"
+        app:layout_widthPercent="13%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/register"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_forget_pwd"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignBottom="@id/lay_register"
+        android:layout_toRightOf="@id/lay_register"
+        app:layout_heightPercent="8%"
+        app:layout_widthPercent="25%">
+
+        <TextView
+            android:id="@+id/txt_forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="@string/forget_password"
+            android:textSize="18sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/login_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/lay_forget_pwd"
         android:text="@string/login_tip"
-        android:layout_below="@id/txt_forget_pwd"/>
+        android:textSize="15sp" />
 
 
 </android.support.percent.PercentRelativeLayout>

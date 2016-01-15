@@ -8,11 +8,10 @@
 
     <ImageView
         android:id="@+id/img_blur"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        app:layout_heightPercent="100%"
-        app:layout_widthPercent="100%" />
+        android:src="@drawable/user_top"/>
 
     <com.smartman.base.ui.CircleImageView
         android:id="@+id/img_user"
@@ -20,8 +19,15 @@
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
         app:layout_heightPercent="20%"
-        app:layout_marginTopPercent="10%"
-        app:layout_widthPercent="45%" />
+        app:layout_marginTopPercent="14%"
+        app:layout_widthPercent="40%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_user"
+        android:text="未登录"
+        android:layout_centerHorizontal="true"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -29,41 +35,37 @@
         android:layout_below="@id/img_user"
         android:layout_centerInParent="true"
         android:orientation="vertical"
+        android:layout_marginTop="30dp"
         app:layout_widthPercent="90%">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="个人等级:" />
+            android:text="个人等级:"
+            android:textSize="17sp"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#b90f0f"></View>
+        <View style="@style/split_line" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="17sp"
             android:text="探索面积:" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#b90f0f"></View>
+        <View style="@style/split_line" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="17sp"
             android:text="已探索省份:" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#b90f0f"></View>
+        <View style="@style/split_line" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="17sp"
             android:text="已探索城市:" />
 
     </LinearLayout>
@@ -76,26 +78,29 @@
         app:layout_widthPercent="65%"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:text="设置"/>
+        app:layout_marginBottomPercent="2%"
+        android:background="@color/colorPrimary"
+        android:textSize="16sp"
+        android:text="@string/setting"/>
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="10%"
-        app:layout_widthPercent="65%"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/setting"
-        android:text="注册"/>
+    <!--<Button-->
+        <!--android:id="@+id/register"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--app:layout_heightPercent="10%"-->
+        <!--app:layout_widthPercent="65%"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_above="@id/setting"-->
+        <!--android:text="注册"/>-->
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="10%"
-        app:layout_widthPercent="65%"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/register"
-        android:text="登录"/>
+    <!--<Button-->
+        <!--android:id="@+id/login"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--app:layout_heightPercent="10%"-->
+        <!--app:layout_widthPercent="65%"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_above="@id/register"-->
+        <!--android:text="登录"/>-->
 
 </android.support.percent.PercentRelativeLayout>

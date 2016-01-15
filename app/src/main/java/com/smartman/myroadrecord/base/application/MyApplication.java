@@ -1,6 +1,7 @@
 package com.smartman.myroadrecord.base.application;
 
 import com.smartman.base.application.XUtilApplication;
+import com.smartman.base.utils.PrefsUtil;
 
 /**
  * Created by jiahui.chen on 2015/12/22.
@@ -12,7 +13,7 @@ public class MyApplication extends XUtilApplication {
     public void onCreate() {
         super.onCreate();
         myApplication = this;
-
+        PrefsUtil.init(this);
     }
 
     public static MyApplication getInstance() {

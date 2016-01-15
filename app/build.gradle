@@ -27,7 +27,7 @@ android {
         ndk {
             moduleName "ImageBlur"
             ldLibs "log", "jnigraphics"
-            abiFilters "armeabi", "armeabi-v7a", "x86"
+            abiFilters "armeabi", "armeabi-v7a","x86"
         }
     }
     buildTypes {

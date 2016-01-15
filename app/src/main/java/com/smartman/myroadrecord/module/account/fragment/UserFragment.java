@@ -18,10 +18,11 @@ import android.widget.ImageView;
 
 import com.smartman.base.blur.util.FastBlur;
 import com.smartman.base.ui.CircleImageView;
+import com.smartman.base.utils.PrefsUtil;
+import com.smartman.base.utils.ResourceUtil;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
 import com.smartman.myroadrecord.module.account.activity.LoginActivity;
-import com.smartman.myroadrecord.module.account.activity.RegisterActivity;
 import com.smartman.myroadrecord.module.account.activity.UserDetailActivity;
 
 import org.xutils.view.annotation.ContentView;
@@ -36,19 +37,28 @@ public class UserFragment extends ViewPageFragment {
     private CircleImageView Userimg;
     @ViewInject(R.id.setting)
     private Button settingBtn;
-    @ViewInject(R.id.register)
-    private Button registerBtn;
-    @ViewInject(R.id.login)
-    private Button loginBtn;
+//    @ViewInject(R.id.register)
+//    private Button registerBtn;
+//    @ViewInject(R.id.login)
+//    private Button loginBtn;
 
     private static LruCache cache = new LruCache((int) (Runtime.getRuntime().maxMemory() / 3));
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ininView();
         initImg();
         //高斯模糊
-        applyBlur();
+        //applyBlur();
+    }
+
+    private void ininView() {
+        if (PrefsUtil.getPref().getBoolean("User_Logined", false)) {
+            settingBtn.setText(ResourceUtil.getString(R.string.setting));
+        } else {
+            settingBtn.setText(ResourceUtil.getString(R.string.login));
+        }
     }
 
     private void initImg() {
@@ -95,21 +105,26 @@ public class UserFragment extends ViewPageFragment {
     @Event(value = R.id.setting, type = View.OnClickListener.class)
     private void gotoSettingClick(View view) {
         if (getActivity() == null) return;
-        Intent intent = new Intent(getActivity(), UserDetailActivity.class);
+        Intent intent;
+        if (PrefsUtil.getPref().getBoolean("User_Logined", false)) {
+            intent = new Intent(getActivity(), UserDetailActivity.class);
+        } else {
+            intent = new Intent(getActivity(), LoginActivity.class);
+        }
         startActivity(intent);
     }
 
-    @Event(value = R.id.register, type = View.OnClickListener.class)
-    private void gotoRegisterClick(View view) {
-        if (getActivity() == null) return;
-        Intent intent = new Intent(getActivity(), RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    @Event(value = R.id.login, type = View.OnClickListener.class)
-    private void gotoLoginClick(View view) {
-        if (getActivity() == null) return;
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent);
-    }
+//    @Event(value = R.id.register, type = View.OnClickListener.class)
+//    private void gotoRegisterClick(View view) {
+//        if (getActivity() == null) return;
+//        Intent intent = new Intent(getActivity(), RegisterActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    @Event(value = R.id.login, type = View.OnClickListener.class)
+//    private void gotoLoginClick(View view) {
+//        if (getActivity() == null) return;
+//        Intent intent = new Intent(getActivity(), LoginActivity.class);
+//        startActivity(intent);
+//    }
 }
