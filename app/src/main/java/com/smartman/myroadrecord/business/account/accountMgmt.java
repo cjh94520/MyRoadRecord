@@ -1,8 +1,8 @@
 package com.smartman.myroadrecord.business.account;
 
-import com.smartman.base.task.TaskException;
 import com.smartman.base.http.HttpUtil;
-import com.smartman.base.utils.SettingUtil;
+import com.smartman.base.task.TaskException;
+import com.smartman.base.utils.ServerUtil;
 import com.smartman.myroadrecord.business.account.bean.AccountBean;
 
 import org.xutils.http.RequestParams;
@@ -16,10 +16,12 @@ public class accountMgmt {
      * @return AccountBean
      * @Description: 获取用户信息
      */
-    public AccountBean getUserInfo() throws TaskException {
-        String uri = SettingUtil.getStringSetting("url_china");
+    public String uploadRegisterInfo(AccountBean bean) throws TaskException {
+        String uri = ServerUtil.getServerUrl();
+        uri += ServerUtil.getValue("uploadRegisterInfo");
         RequestParams params = new RequestParams(uri);
-        params.addQueryStringParameter("userID", "18688553035");
-        return HttpUtil.doGetSync(params, AccountBean.class);
+        params.addQueryStringParameter("userID", bean.id);
+        params.addQueryStringParameter("userPwd", bean.password);
+        return HttpUtil.doGetSync(params, String.class);
     }
 }

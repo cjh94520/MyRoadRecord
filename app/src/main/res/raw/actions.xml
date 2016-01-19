@@ -7,13 +7,17 @@
 
     <setting type="url_test">
         <des>测试服务地址</des>
-        <value>http://usercare-test.tclclouds.com/</value>
+        <value>http://10.128.208.135:8080</value>
     </setting>
-
 
     <setting type="MccInfo">
         <des>获取MCC码信息</des>
         <value>api/countrymcc/data.json</value>
+    </setting>
+
+    <setting type="uploadRegisterInfo">
+        <des>上传注册用户信息</des>
+        <value>/RegisterServlet</value>
     </setting>
 
 </app-settings>

@@ -1,6 +1,5 @@
 package com.smartman.myroadrecord.module.account.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -12,11 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smartman.base.activity.BaseActivity;
+import com.smartman.base.task.TaskException;
+import com.smartman.base.task.WorkTask;
 import com.smartman.base.utils.IntentSpan;
 import com.smartman.base.utils.ResourceUtil;
 import com.smartman.base.utils.TimeCount;
 import com.smartman.base.utils.ValidUtil;
 import com.smartman.myroadrecord.R;
+import com.smartman.myroadrecord.business.account.accountMgmt;
+import com.smartman.myroadrecord.business.account.bean.AccountBean;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
@@ -96,21 +99,45 @@ public class RegisterActivity extends BaseActivity {
     //注册事件
     @Event(value = R.id.complete, type = View.OnClickListener.class)
     private void completeRegisterClick(View view) {
-        String phone = phoneText.getText().toString();
-        String code = codeText.getText().toString();
-        QJLinkManager.getInstance(RegisterActivity.this).requestLogin(phone, code, new OnLoadDataListener() {
-            @Override
-            public void onSuccess(String s) {
-                LogUtil.d(s);
-                Intent intent = new Intent(RegisterActivity.this,AccessActivity.class);
-                startActivity(intent);
-            }
+        new AccountTask().execute();
+//        final String phone = phoneText.getText().toString();
+//        String code = codeText.getText().toString();
+//        QJLinkManager.getInstance(RegisterActivity.this).requestLogin(phone, code, new OnLoadDataListener() {
+//            @Override
+//            public void onSuccess(String s) {
+//                LogUtil.d(s);
+//                new AccountTask().execute();
+//                Intent intent = new Intent(RegisterActivity.this, AccessActivity.class);
+//                startActivity(intent);
+//            }
+//
+//            @Override
+//            public void onError(String s) {
+//                LogUtil.d(s);
+//            }
+//        });
+    }
 
-            @Override
-            public void onError(String s) {
-                LogUtil.d(s);
-            }
-        });
+    class AccountTask extends WorkTask<Void, Void, String> {
+        @Override
+        public String workInBackground(Void... params) throws TaskException {
+            AccountBean bean = new AccountBean();
+            bean.id = phoneText.getText().toString();
+            bean.password = pwdText.getText().toString();
+            return new accountMgmt().uploadRegisterInfo(bean);
+        }
+
+        @Override
+        protected void onSuccess(String s) {
+            super.onSuccess(s);
+            LogUtil.d(s);
+        }
+
+        @Override
+        protected void onFailure(TaskException exception) {
+            super.onFailure(exception);
+            LogUtil.d(exception.getMessage());
+        }
     }
 
 }
