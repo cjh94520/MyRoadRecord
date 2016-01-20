@@ -47,7 +47,6 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //设置action bar
         this.getMDActionBar().setDisplayHomeAsUpEnabled(true);
         this.getMDActionBar().setTitle(R.string.register);

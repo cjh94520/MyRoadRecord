@@ -6,33 +6,42 @@
     android:clipToPadding="true"
     android:fitsSystemWindows="true">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_bg" />
+
     <RelativeLayout
         android:id="@+id/lay_login"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/login_sec"
+        android:padding="10dp"
+        app:layout_marginTopPercent="20%"
+        app:layout_widthPercent="80%">
 
         <EditText
             android:id="@+id/user_id"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ID"
-            android:minWidth="150dp" />
+            android:textColorHint="#a9a1a1" />
 
         <EditText
             android:id="@+id/user_pwd"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_id"
+            android:inputType="textPassword"
             android:hint="password"
-            android:minWidth="150dp" />
+            android:textColorHint="#a9a1a1" />
 
         <Button
             android:id="@+id/send_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_below="@id/user_pwd"
             android:layout_centerHorizontal="true"
+            style="@style/common_button_style"
             android:text="@string/login" />
     </RelativeLayout>
 
@@ -43,6 +52,7 @@
         android:layout_height="0dp"
         android:layout_below="@id/lay_login"
         app:layout_heightPercent="8%"
+        app:layout_marginLeftPercent="15%"
         app:layout_widthPercent="13%">
 
         <TextView
@@ -50,7 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/register"
-            android:textSize="18sp" />
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -60,6 +71,7 @@
         android:layout_alignBottom="@id/lay_register"
         android:layout_toRightOf="@id/lay_register"
         app:layout_heightPercent="8%"
+        app:layout_marginLeftPercent="33%"
         app:layout_widthPercent="25%">
 
         <TextView
@@ -69,7 +81,8 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:text="@string/forget_password"
-            android:textSize="18sp" />
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
     </LinearLayout>
 
     <TextView
@@ -78,7 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/lay_forget_pwd"
         android:text="@string/login_tip"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="gone" />
 
 
 </android.support.percent.PercentRelativeLayout>

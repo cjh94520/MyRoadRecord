@@ -7,6 +7,8 @@
     <color name="dark">#FF222222</color>
     <color name="light">#FFEEEEEE</color>
     <color name="white">#FFffffff</color>
+    <color name="dark_light">#484646</color>
+    <color name="grey">#a9a1a1</color>
 
     <color name="bg_activity_main">#efefef</color>
 </resources>
