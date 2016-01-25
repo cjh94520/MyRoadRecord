@@ -48,4 +48,15 @@ public class ValidUtil {
 	   return isNum.matches() ; 
 	}
 
+	/**
+	 * 判断密码串是否6-16位，只含有字母和数字
+	 * @param str 字符串
+	 * @return 返回判断结果
+	 */
+	public static boolean isMatchPassword(String str){
+		Pattern pattern = Pattern.compile("[a-zA-Z0-9]{6,16}");
+		Matcher isNum = pattern.matcher(str);
+		return isNum.matches() ;
+	}
+
 }

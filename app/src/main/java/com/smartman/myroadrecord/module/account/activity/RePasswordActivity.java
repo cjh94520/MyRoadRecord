@@ -1,22 +1,18 @@
 package com.smartman.myroadrecord.module.account.activity;
 
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smartman.base.activity.BaseActivity;
 import com.smartman.base.task.TaskException;
 import com.smartman.base.task.WorkTask;
-import com.smartman.base.utils.IntentSpan;
 import com.smartman.base.utils.ResourceUtil;
 import com.smartman.base.utils.TimeCount;
 import com.smartman.base.utils.ToastUtil;
@@ -33,20 +29,20 @@ import org.xutils.view.annotation.ViewInject;
 import cn.my7g.qjlink.sdk.QJLinkManager;
 import cn.my7g.qjlink.sdk.http.OnLoadDataListener;
 
-@ContentView(R.layout.activity_register)
-public class RegisterActivity extends BaseActivity {
+@ContentView(R.layout.activity_re_password)
+public class RePasswordActivity extends BaseActivity {
     @ViewInject(R.id.phone)
     private EditText phoneText;
     @ViewInject(R.id.code)
     private EditText codeText;
     @ViewInject(R.id.password)
     private EditText pwdText;
+    @ViewInject(R.id.re_password)
+    private EditText rePwdText;
     @ViewInject(R.id.request_code)
     private Button requestCodeButton;
     @ViewInject(R.id.complete)
     private Button completeButton;
-    @ViewInject(R.id.register_tip)
-    private TextView tipView;
 
     private static final int EXPIRED_CODE = 0x1001;
     private static final int WRONG_CODE = 0x1002;
@@ -73,22 +69,9 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //设置action bar
+
         this.getMDActionBar().setDisplayHomeAsUpEnabled(true);
-        this.getMDActionBar().setTitle(R.string.register);
-
-        //初始化用户协议
-        initAgreement();
-    }
-
-    private void initAgreement() {
-        String agreement = ResourceUtil.getString(R.string.register_tip);
-        int index = agreement.indexOf("用户使用协议");
-        SpannableStringBuilder builder = new SpannableStringBuilder(agreement);
-        IntentSpan intentSpan = new IntentSpan(this, IntentSpan.Type.Action, "intent.action.agreement");
-        builder.setSpan(intentSpan, index, index + 6, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        tipView.setText(builder);
-        tipView.setMovementMethod(LinkMovementMethod.getInstance());
+        this.getMDActionBar().setTitle(R.string.update_pwd);
     }
 
     //获取验证码事件
@@ -96,12 +79,12 @@ public class RegisterActivity extends BaseActivity {
     private void requestCodeClick(View view) {
         String phone = phoneText.getText().toString();
         if (!ValidUtil.isValidMobilePhone(phone)) {
-            Toast.makeText(RegisterActivity.this, ResourceUtil.getString(R.string.invalid_phone), Toast.LENGTH_SHORT).show();
+            Toast.makeText(RePasswordActivity.this, ResourceUtil.getString(R.string.invalid_phone), Toast.LENGTH_SHORT).show();
             return;
         }
         TimeCount timeCount = new TimeCount(60000, 1000, requestCodeButton);
         timeCount.start();
-        QJLinkManager.getInstance(RegisterActivity.this).requestPassword(phone, new OnLoadDataListener() {
+        QJLinkManager.getInstance(RePasswordActivity.this).requestPassword(phone, new OnLoadDataListener() {
             @Override
             public void onSuccess(String s) {
                 requestCodeButton.setEnabled(true);
@@ -116,18 +99,22 @@ public class RegisterActivity extends BaseActivity {
         });
     }
 
-
-    //注册事件
+    //修改密码事件
     @Event(value = R.id.complete, type = View.OnClickListener.class)
     private void completeRegisterClick(View view) {
         final String phone = phoneText.getText().toString();
         String code = codeText.getText().toString();
         String password = pwdText.getText().toString();
+        String rePassword = rePwdText.getText().toString();
         if (!ValidUtil.isMatchPassword(password)) {
-            Toast.makeText(RegisterActivity.this, ResourceUtil.getString(R.string.password_wrong), Toast.LENGTH_SHORT).show();
+            ToastUtil.showMessage(R.string.password_wrong);
             return;
         }
-        QJLinkManager.getInstance(RegisterActivity.this).requestLogin(phone, code, new OnLoadDataListener() {
+        if (!password.equals(rePassword)) {
+            ToastUtil.showMessage(R.string.different_pwd);
+            return;
+        }
+        QJLinkManager.getInstance(RePasswordActivity.this).requestLogin(phone, code, new OnLoadDataListener() {
             @Override
             public void onSuccess(String s) {
                 LogUtil.d(s);
@@ -163,9 +150,9 @@ public class RegisterActivity extends BaseActivity {
             LogUtil.d(String.valueOf(s));
             //返回true代表该手机号码已经存在
             if (s) {
-                ToastUtil.showMessage(ResourceUtil.getString(R.string.phone_be_registered));
+                new UpdatePwdTask().execute();
             } else {
-                new AccountTask().execute();
+                ToastUtil.showMessage(ResourceUtil.getString(R.string.empty_phone));
             }
         }
 
@@ -177,27 +164,39 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
-    class AccountTask extends WorkTask<Void, Void, String> {
+    class UpdatePwdTask extends WorkTask<Void, Void, Boolean> {
         @Override
-        public String workInBackground(Void... params) throws TaskException {
+        public Boolean workInBackground(Void... params) throws TaskException {
             AccountBean bean = new AccountBean();
             bean.id = phoneText.getText().toString();
             bean.password = pwdText.getText().toString();
-            return new accountMgmt().uploadRegisterInfo(bean);
+            return new accountMgmt().updatePwd(bean);
         }
 
         @Override
-        protected void onSuccess(String s) {
+        protected void onSuccess(Boolean s) {
             super.onSuccess(s);
-            LogUtil.d(s);
-            Intent intent = new Intent(RegisterActivity.this, AccessActivity.class);
-            startActivity(intent);
+            if (s) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(RePasswordActivity.this);
+                builder.setMessage(R.string.pwd_succeed_update)
+                        .setPositiveButton("自动登录",null)
+                        .setNeutralButton("返回", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .show();
+            } else {
+                ToastUtil.showMessage(R.string.pwd_fail_update);
+            }
         }
 
         @Override
         protected void onFailure(TaskException exception) {
             super.onFailure(exception);
             LogUtil.d(exception.getMessage());
+            ToastUtil.showMessage(R.string.pwd_fail_update);
         }
 
         @Override

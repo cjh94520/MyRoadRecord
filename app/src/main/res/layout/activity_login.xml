@@ -26,22 +26,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ID"
-            android:textColorHint="#a9a1a1" />
+            android:textColorHint="@color/grey" />
 
         <EditText
             android:id="@+id/user_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_id"
-            android:inputType="textPassword"
             android:hint="password"
-            android:textColorHint="#a9a1a1" />
+            android:inputType="textPassword"
+            android:textColorHint="@color/grey" />
 
         <Button
             android:id="@+id/send_login"
+            style="@style/common_button_style"
             android:layout_below="@id/user_pwd"
             android:layout_centerHorizontal="true"
-            style="@style/common_button_style"
             android:text="@string/login" />
     </RelativeLayout>
 

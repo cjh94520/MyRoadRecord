@@ -7,7 +7,7 @@
 
     <setting type="url_test">
         <des>测试服务地址</des>
-        <value>http://10.128.208.135:8080</value>
+        <value>http://10.128.208.133:8080</value>
     </setting>
 
     <setting type="MccInfo">
@@ -16,8 +16,23 @@
     </setting>
 
     <setting type="uploadRegisterInfo">
-        <des>上传注册用户信息</des>
-        <value>/RegisterServlet</value>
+        <des>注册用户信息</des>
+        <value>/user/register</value>
+    </setting>
+
+    <setting type="checkPhoneInfo">
+        <des>检查该手机是否已经注册</des>
+        <value>/user/check</value>
+    </setting>
+
+    <setting type="login">
+        <des>登录</des>
+        <value>/user/login</value>
+    </setting>
+
+    <setting type="updatePwd">
+        <des>修改密码</des>
+        <value>/user/updatePwd</value>
     </setting>
 
 </app-settings>

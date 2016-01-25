@@ -141,8 +141,8 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".module.map.LocationActivity">
-        </activity>
+        <activity android:name=".module.map.LocationActivity"></activity>
+        <activity android:name=".module.account.activity.RePasswordActivity"></activity>
     </application>
 
 </manifest>
