@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import com.smartman.base.activity.BaseActivity;
 import com.smartman.base.task.TaskException;
 import com.smartman.base.task.WorkTask;
+import com.smartman.base.utils.PrefsUtil;
 import com.smartman.base.utils.ResourceUtil;
 import com.smartman.base.utils.ToastUtil;
 import com.smartman.myroadrecord.R;
@@ -92,6 +93,7 @@ public class LoginActivity extends BaseActivity {
                 ToastUtil.showMessage(ResourceUtil.getString(R.string.wrong_login));
             } else {
                 finish();
+                PrefsUtil.savePrefString("user_name",s.data.getName());
                 //刷新UserFragment
             }
         }
