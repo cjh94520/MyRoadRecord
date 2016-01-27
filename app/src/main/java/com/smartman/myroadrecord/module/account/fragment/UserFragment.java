@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.smartman.base.blur.util.FastBlur;
 import com.smartman.base.ui.CircleImageView;
@@ -24,10 +25,13 @@ import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
 import com.smartman.myroadrecord.module.account.activity.LoginActivity;
 import com.smartman.myroadrecord.module.account.activity.UserDetailActivity;
+import com.smartman.myroadrecord.module.account.event.UserEvent;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+
+import de.greenrobot.event.EventBus;
 
 @ContentView(R.layout.activity_userinfo)
 public class UserFragment extends ViewPageFragment {
@@ -37,6 +41,8 @@ public class UserFragment extends ViewPageFragment {
     private CircleImageView Userimg;
     @ViewInject(R.id.setting)
     private Button settingBtn;
+    @ViewInject(R.id.user_name)
+    private TextView nameView;
 //    @ViewInject(R.id.register)
 //    private Button registerBtn;
 //    @ViewInject(R.id.login)
@@ -47,6 +53,7 @@ public class UserFragment extends ViewPageFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        EventBus.getDefault().register(this);
         ininView();
         initImg();
         //高斯模糊
@@ -106,7 +113,7 @@ public class UserFragment extends ViewPageFragment {
     private void gotoSettingClick(View view) {
         if (getActivity() == null) return;
         Intent intent;
-        if (PrefsUtil.getPref().getBoolean("User_Logined", false)) {
+        if (PrefsUtil.loadPrefBoolean("USER_LOGINED", false)) {
             intent = new Intent(getActivity(), UserDetailActivity.class);
         } else {
             intent = new Intent(getActivity(), LoginActivity.class);
@@ -127,4 +134,18 @@ public class UserFragment extends ViewPageFragment {
 //        Intent intent = new Intent(getActivity(), LoginActivity.class);
 //        startActivity(intent);
 //    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    public void onEventMainThread(UserEvent event)
+    {
+        String name = PrefsUtil.loadPrefString("USER_NAME","未登录");
+        nameView.setText(name);
+        ininView();
+    }
 }

@@ -17,7 +17,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/register_sec"
         android:padding="10dp"
-        app:layout_marginTopPercent="17%"
+        app:layout_marginTopPercent="16%"
         app:layout_widthPercent="85%">
 
         <TextView

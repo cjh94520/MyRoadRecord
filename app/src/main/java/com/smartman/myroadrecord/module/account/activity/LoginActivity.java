@@ -18,11 +18,14 @@ import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.business.account.accountMgmt;
 import com.smartman.myroadrecord.business.account.bean.AccountBean;
 import com.smartman.myroadrecord.business.account.bean.AccountReturnBean;
+import com.smartman.myroadrecord.module.account.event.UserEvent;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by jiahui.chen on 2015/12/28.
@@ -46,6 +49,7 @@ public class LoginActivity extends BaseActivity {
         //设置action bar
         this.getMDActionBar().setDisplayHomeAsUpEnabled(true);
         this.getMDActionBar().setTitle(R.string.login);
+
     }
 
     @Event(value = R.id.send_login, type = View.OnClickListener.class)
@@ -93,8 +97,11 @@ public class LoginActivity extends BaseActivity {
                 ToastUtil.showMessage(ResourceUtil.getString(R.string.wrong_login));
             } else {
                 finish();
-                PrefsUtil.savePrefString("user_name",s.data.getName());
+                PrefsUtil.savePrefString("USER_NAME",s.data.getName());
+                PrefsUtil.savePrefBoolean("USER_LOGINED",true);
                 //刷新UserFragment
+                // 发布事件，在后台线程发的事件
+                EventBus.getDefault().post(new UserEvent());
             }
         }
 

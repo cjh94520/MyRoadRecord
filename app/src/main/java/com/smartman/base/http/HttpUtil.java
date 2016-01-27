@@ -103,4 +103,33 @@ public class HttpUtil {
     }
 
 
+    public static <T> T uploadFile(RequestParams params, Class<T> responseCls) throws TaskException {
+        try {
+            return x.http().getSync(params, responseCls);
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+            throw new TaskException(TaskException.TaskError.timeout.toString());
+        } catch (ConnectTimeoutException e) {
+            e.printStackTrace();
+            throw new TaskException(TaskException.TaskError.timeout.toString());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            throw new TaskException(TaskException.TaskError.timeout.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new TaskException(TaskException.TaskError.timeout.toString());
+        } catch (Throwable throwable) {
+            TaskException taskException = null;
+            if (throwable.getCause() instanceof TaskException) {
+                taskException = (TaskException) throwable.getCause();
+            } else if (throwable instanceof TaskException) {
+                taskException = (TaskException) throwable;
+            }
+            if (taskException != null) {
+                throw taskException;
+            }
+            throw new TaskException("", TextUtils.isEmpty(throwable.getMessage()) ? "服务器错误" : throwable.getMessage());
+        }
+    }
+
 }
