@@ -20,10 +20,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.smartman.base.activity.BaseActivity;
+import com.smartman.base.task.TaskException;
+import com.smartman.base.task.WorkTask;
 import com.smartman.base.ui.CircleImageView;
 import com.smartman.base.utils.SnackbarUtil;
 import com.smartman.base.utils.ToastUtil;
 import com.smartman.myroadrecord.R;
+import com.smartman.myroadrecord.business.account.accountMgmt;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
@@ -128,6 +131,7 @@ public class UserDetailActivity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == CHANGE_IMG) {
                 Uri uri = data.getData();
+                LogUtil.d(uri.getPath());
                 ContentResolver cr = this.getContentResolver();
                 try {
                     Bitmap bmp = BitmapFactory.decodeStream(cr.openInputStream(uri));
@@ -136,6 +140,7 @@ public class UserDetailActivity extends BaseActivity {
                     LogUtil.d("字节数：" + String.valueOf(target.getByteCount() / 1024.0 / 1024));
                     bmp.recycle();
                     imgView.setImageBitmap(target);
+                    new uploadImgTask().execute(uri.getPath());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -143,6 +148,29 @@ public class UserDetailActivity extends BaseActivity {
             }
         }
 
+    }
+
+    class uploadImgTask extends WorkTask<String, Void, Boolean> {
+        @Override
+        public Boolean workInBackground(String... params) throws TaskException {
+            return new accountMgmt().uploadImg(params[0]);
+        }
+
+        @Override
+        protected void onSuccess(Boolean s) {
+            super.onSuccess(s);
+        }
+
+        @Override
+        protected void onFailure(TaskException exception) {
+            super.onFailure(exception);
+            LogUtil.d(exception.getMessage());
+        }
+
+        @Override
+        protected void onFinished() {
+            super.onFinished();
+        }
     }
 
 

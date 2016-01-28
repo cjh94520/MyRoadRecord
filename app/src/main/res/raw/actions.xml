@@ -2,12 +2,12 @@
 <app-settings>
     <setting type="url_china">
         <des>中国服务地址</des>
-        <value>http://www.mop.com</value>
+        <value>http://180.76.144.210/myroadrecord</value>
     </setting>
 
     <setting type="url_test">
         <des>测试服务地址</des>
-        <value>http://180.76.144.210/myroadrecord</value>
+        <value>http://10.128.208.133</value>
     </setting>
 
     <setting type="uploadRegisterInfo">
@@ -28,6 +28,11 @@
     <setting type="updatePwd">
         <des>修改密码</des>
         <value>/user/updatePwd</value>
+    </setting>
+
+    <setting type="uploadImg">
+        <des>上传用户头像</des>
+        <value>/user/uploadImg</value>
     </setting>
 
 </app-settings>

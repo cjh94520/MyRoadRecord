@@ -68,17 +68,21 @@ public class accountMgmt {
 
     /**
      * @return Boolean
-     * @Description: 修改密码
+     * @Description: 上传用户头像
      */
-    public Boolean uploadImg(AccountBean bean) throws TaskException {
-        String uri = ServerUtil.getServerUrl();
-        uri += ServerUtil.getValue("uploadImg");
-        RequestParams params = new RequestParams(uri);
+    public Boolean uploadImg(String imgPath) throws TaskException {
+        String address = ServerUtil.getServerUrl();
+        address += ServerUtil.getValue("uploadImg");
+        RequestParams params = new RequestParams(address);
         params.addQueryStringParameter("test", "test");
         params.setMultipart(true);
-        params.addBodyParameter("file", new File("/sdcard/test.jpg"), null); // 如果文件没有扩展名, 最好设置contentType参数.
-        params.addQueryStringParameter("password", bean.password);
-        return HttpUtil.doGetSync(params, Boolean.class);
+        File file = new File(imgPath);
+        if(file.exists())
+        {
+            params.addBodyParameter("file", new File(imgPath), null); // 如果文件没有扩展名, 最好设置contentType参数.
+            return HttpUtil.uploadFile(params, Boolean.class);
+        }
+        return false;
     }
 
 }
