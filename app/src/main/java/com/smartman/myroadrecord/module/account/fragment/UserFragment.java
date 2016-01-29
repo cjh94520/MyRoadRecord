@@ -113,11 +113,12 @@ public class UserFragment extends ViewPageFragment {
     private void gotoSettingClick(View view) {
         if (getActivity() == null) return;
         Intent intent;
-        if (PrefsUtil.loadPrefBoolean("USER_LOGINED", false)) {
-            intent = new Intent(getActivity(), UserDetailActivity.class);
-        } else {
-            intent = new Intent(getActivity(), LoginActivity.class);
-        }
+        intent = new Intent(getActivity(), UserDetailActivity.class);
+//        if (PrefsUtil.loadPrefBoolean("USER_LOGINED", false)) {
+//            intent = new Intent(getActivity(), UserDetailActivity.class);
+//        } else {
+//            intent = new Intent(getActivity(), LoginActivity.class);
+//        }
         startActivity(intent);
     }
 

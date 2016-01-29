@@ -6,9 +6,13 @@ import com.smartman.base.utils.ServerUtil;
 import com.smartman.myroadrecord.business.account.bean.AccountBean;
 import com.smartman.myroadrecord.business.account.bean.AccountReturnBean;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * Created by jiahui.chen on 2015/12/29.
@@ -76,13 +80,8 @@ public class accountMgmt {
         RequestParams params = new RequestParams(address);
         params.addQueryStringParameter("test", "test");
         params.setMultipart(true);
-        File file = new File(imgPath);
-        if(file.exists())
-        {
-            params.addBodyParameter("file", new File(imgPath), null); // 如果文件没有扩展名, 最好设置contentType参数.
-            return HttpUtil.uploadFile(params, Boolean.class);
-        }
-        return false;
+        params.addBodyParameter("file", new File(imgPath), null); // 如果文件没有扩展名, 最好设置contentType参数.
+        return HttpUtil.uploadFile(params, Boolean.class);
     }
 
 }
