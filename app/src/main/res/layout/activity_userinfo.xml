@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/user_top"/>
+        android:src="@drawable/user_top" />
 
     <com.smartman.base.ui.CircleImageView
         android:id="@+id/img_user"
@@ -27,81 +27,331 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/img_user"
-        android:text="未登录"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:text="未登录" />
+
+    <LinearLayout
+        android:id="@+id/user_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="2%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_name"
+            android:layout_centerHorizontal="true"
+            android:text="LV :    "
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_name"
+            android:layout_centerHorizontal="true"
+            android:text="初阶"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/left_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/user_name"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/user_grade"
+        android:background="@color/colorAccent"
+        app:layout_marginTopPercent="4%"
+        app:layout_widthPercent="30%" />
+
+    <View
+        android:id="@+id/right_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/user_name"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/user_grade"
+        android:background="@color/colorAccent"
+        app:layout_marginTopPercent="4%"
+        app:layout_widthPercent="30%" />
+
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/img_user"
+        android:layout_alignLeft="@id/left_line"
+        android:layout_below="@id/user_grade"
         android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        app:layout_widthPercent="90%">
+        android:padding="1dp"
+        app:layout_heightPercent="45%"
+        app:layout_marginTopPercent="3%"
+        app:layout_widthPercent="85%">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="个人等级:"
-            android:textSize="17sp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <View style="@style/split_line" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/explode_day" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="探索面积:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="30dp"
+                android:text="@string/explore_time"
+                android:textSize="16sp" />
 
-        <View style="@style/split_line" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:paddingRight="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="已探索省份:" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="233"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
 
-        <View style="@style/split_line" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  日"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="已探索城市:" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/explode_area" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="30dp"
+                android:text="@string/explore_area"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2365.233333"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  平方公里"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/explode_percent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="30dp"
+                android:text="@string/explore_percent"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.018234"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  %"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/explode_province" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="30dp"
+                android:text="@string/explore_province"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  /  34"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/explode_city" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="30dp"
+                android:text="@string/explore_city"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="32"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  /  661"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/setting"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="10%"
-        app:layout_widthPercent="65%"
-        android:layout_centerHorizontal="true"
+
+    <ImageButton
+        android:id="@+id/user_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:layout_marginBottomPercent="2%"
-        android:background="@color/colorPrimary"
-        android:textSize="16sp"
-        android:text="@string/setting"/>
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/user_setting" />
 
-    <!--<Button-->
-        <!--android:id="@+id/register"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--app:layout_heightPercent="10%"-->
-        <!--app:layout_widthPercent="65%"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_above="@id/setting"-->
-        <!--android:text="注册"/>-->
+    <View
+        android:id="@+id/left_line_bottom"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/user_setting"
+        android:background="@color/colorAccent"
+        app:layout_marginTopPercent="95%"
+        app:layout_widthPercent="30%" />
 
-    <!--<Button-->
-        <!--android:id="@+id/login"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--app:layout_heightPercent="10%"-->
-        <!--app:layout_widthPercent="65%"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_above="@id/register"-->
-        <!--android:text="登录"/>-->
+    <View
+        android:id="@+id/right_line_bottom"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/user_grade"
+        android:background="@color/colorAccent"
+        app:layout_marginTopPercent="95%"
+        app:layout_widthPercent="30%" />
 
 </android.support.percent.PercentRelativeLayout>

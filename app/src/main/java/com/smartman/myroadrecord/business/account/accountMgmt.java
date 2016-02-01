@@ -2,9 +2,11 @@ package com.smartman.myroadrecord.business.account;
 
 import com.smartman.base.http.HttpUtil;
 import com.smartman.base.task.TaskException;
+import com.smartman.base.utils.PrefsUtil;
 import com.smartman.base.utils.ServerUtil;
 import com.smartman.myroadrecord.business.account.bean.AccountBean;
 import com.smartman.myroadrecord.business.account.bean.AccountReturnBean;
+import com.smartman.myroadrecord.module.account.param.UserConst;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
@@ -78,7 +80,8 @@ public class accountMgmt {
         String address = ServerUtil.getServerUrl();
         address += ServerUtil.getValue("uploadImg");
         RequestParams params = new RequestParams(address);
-        params.addQueryStringParameter("test", "test");
+        String name = PrefsUtil.loadPrefString(UserConst.USER_NAME, "未登录");
+        params.addQueryStringParameter("id", "18688553035");
         params.setMultipart(true);
         params.addBodyParameter("file", new File(imgPath), null); // 如果文件没有扩展名, 最好设置contentType参数.
         return HttpUtil.uploadFile(params, Boolean.class);

@@ -47,6 +47,11 @@
     <string name="please_confirm_pwd">再次确认新的密码</string>
     <string name="confirm_update">确定修改</string>
     <string name="complete">完成</string>
+    <string name="explore_time">探索时间 :</string>
+    <string name="explore_area">探索面积 :</string>
+    <string name="explore_percent">探索比率 :</string>
+    <string name="explore_province">探索省份 :</string>
+    <string name="explore_city">探索城市 :</string>
 
     <!-- Exception -->
     <string name="nonenetwork">没有网络连接</string>
