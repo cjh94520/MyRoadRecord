@@ -7,14 +7,11 @@ import com.smartman.base.utils.ServerUtil;
 import com.smartman.myroadrecord.business.account.bean.AccountBean;
 import com.smartman.myroadrecord.business.account.bean.AccountReturnBean;
 import com.smartman.myroadrecord.module.account.param.UserConst;
+import com.smartman.myroadrecord.module.account.util.UserUtil;
 
-import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 /**
  * Created by jiahui.chen on 2015/12/29.
@@ -76,15 +73,26 @@ public class accountMgmt {
      * @return Boolean
      * @Description: 上传用户头像
      */
-    public Boolean uploadImg(String imgPath) throws TaskException {
+    public Boolean uploadImg(String path) throws TaskException {
         String address = ServerUtil.getServerUrl();
         address += ServerUtil.getValue("uploadImg");
         RequestParams params = new RequestParams(address);
         String name = PrefsUtil.loadPrefString(UserConst.USER_NAME, "未登录");
-        params.addQueryStringParameter("id", "18688553035");
-        params.setMultipart(true);
-        params.addBodyParameter("file", new File(imgPath), null); // 如果文件没有扩展名, 最好设置contentType参数.
+        params.addQueryStringParameter("id", name);
+        params.addBodyParameter("file", new File(path), null); // 如果文件没有扩展名, 最好设置contentType参数.
         return HttpUtil.uploadFile(params, Boolean.class);
+    }
+
+    /**
+     * @return Boolean
+     * @Description: 下载用户头像
+     */
+    public File downloadImg(String id) throws TaskException {
+        String uri = ServerUtil.getServerUrl();
+        uri += ServerUtil.getValue("downloadImg");
+        RequestParams params = new RequestParams(uri);
+        params.addQueryStringParameter("id", id);
+        return HttpUtil.downloadFile(params, UserUtil.getUserImgPath());
     }
 
 }

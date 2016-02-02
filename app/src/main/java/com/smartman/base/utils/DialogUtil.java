@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 
 /**
  * Created by jiahui.chen on 2016/1/27.
+ * 对话框的类
  */
 public class DialogUtil {
     public static ProgressDialog progressDialog;

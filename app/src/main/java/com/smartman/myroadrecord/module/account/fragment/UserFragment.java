@@ -14,20 +14,20 @@ import android.util.LruCache;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.smartman.base.blur.util.FastBlur;
 import com.smartman.base.ui.CircleImageView;
+import com.smartman.base.utils.ImageUtil;
 import com.smartman.base.utils.PrefsUtil;
-import com.smartman.base.utils.ResourceUtil;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
 import com.smartman.myroadrecord.module.account.activity.LoginActivity;
 import com.smartman.myroadrecord.module.account.activity.UserDetailActivity;
 import com.smartman.myroadrecord.module.account.event.UserEvent;
 import com.smartman.myroadrecord.module.account.param.UserConst;
+import com.smartman.myroadrecord.module.account.util.UserUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -42,9 +42,15 @@ public class UserFragment extends ViewPageFragment {
     @ViewInject(R.id.img_user)
     private CircleImageView Userimg;
     @ViewInject(R.id.user_setting)
-    private ImageButton settingBtn;
+    private ImageView settingImgView;
     @ViewInject(R.id.user_name)
     private TextView nameView;
+    @ViewInject(R.id.tologin)
+    private Button toLoginBtn;
+    @ViewInject(R.id.left_line_bottom)
+    private View leftLine;
+    @ViewInject(R.id.right_line_bottom)
+    private View rightLine;
 
     private static LruCache cache = new LruCache((int) (Runtime.getRuntime().maxMemory() / 3));
 
@@ -53,12 +59,39 @@ public class UserFragment extends ViewPageFragment {
         super.onActivityCreated(savedInstanceState);
         EventBus.getDefault().register(this);
         initImg();
+        //初始化足迹的数据
+        initData();
         //高斯模糊
         //applyBlur();
     }
 
     private void initImg() {
-        Userimg.setImageResource(R.drawable.girl);
+        Boolean isLogined = PrefsUtil.loadPrefBoolean(UserConst.USER_LOGINED, false);
+        if (!isLogined) {
+            //默认头像
+            Userimg.setImageResource(R.drawable.girl);
+        } else {
+            ImageUtil.displayImage(Userimg, UserUtil.getUserImgPath());
+        }
+    }
+
+    private void initData() {
+        Boolean isLogined = PrefsUtil.loadPrefBoolean(UserConst.USER_LOGINED, false);
+        if (!isLogined) {
+            toLoginBtn.setVisibility(View.VISIBLE);
+            settingImgView.setVisibility(View.GONE);
+            leftLine.setVisibility(View.GONE);
+            rightLine.setVisibility(View.GONE);
+        } else
+        //已经登陆了需要刷新数据
+        {
+            toLoginBtn.setVisibility(View.GONE);
+            settingImgView.setVisibility(View.VISIBLE);
+            leftLine.setVisibility(View.VISIBLE);
+            rightLine.setVisibility(View.VISIBLE);
+            String name = PrefsUtil.loadPrefString(UserConst.USER_NAME, "未登录");
+            nameView.setText(name);
+        }
     }
 
     private void applyBlur() {
@@ -101,29 +134,17 @@ public class UserFragment extends ViewPageFragment {
     @Event(value = R.id.user_setting, type = View.OnClickListener.class)
     private void gotoSettingClick(View view) {
         if (getActivity() == null) return;
-        Intent intent;
-        intent = new Intent(getActivity(), UserDetailActivity.class);
-        if (PrefsUtil.loadPrefBoolean(UserConst.USER_LOGINED, false)) {
-            intent = new Intent(getActivity(), UserDetailActivity.class);
-        } else {
-            intent = new Intent(getActivity(), LoginActivity.class);
-        }
+        Intent intent = new Intent(getActivity(), UserDetailActivity.class);
         startActivity(intent);
     }
 
-//    @Event(value = R.id.register, type = View.OnClickListener.class)
-//    private void gotoRegisterClick(View view) {
-//        if (getActivity() == null) return;
-//        Intent intent = new Intent(getActivity(), RegisterActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    @Event(value = R.id.login, type = View.OnClickListener.class)
-//    private void gotoLoginClick(View view) {
-//        if (getActivity() == null) return;
-//        Intent intent = new Intent(getActivity(), LoginActivity.class);
-//        startActivity(intent);
-//    }
+
+    @Event(value = R.id.tologin, type = View.OnClickListener.class)
+    private void gotoLoginClick(View view) {
+        if (getActivity() == null) return;
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override
@@ -133,7 +154,6 @@ public class UserFragment extends ViewPageFragment {
     }
 
     public void onEventMainThread(UserEvent event) {
-        String name = PrefsUtil.loadPrefString(UserConst.USER_NAME, "未登录");
-        nameView.setText(name);
+        initData();
     }
 }

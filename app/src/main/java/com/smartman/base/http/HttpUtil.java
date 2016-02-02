@@ -9,6 +9,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -70,7 +71,7 @@ public class HttpUtil {
         });
     }
 
-    public static <T> T doPostSync(RequestParams params, Class<T> responseCls)throws TaskException {
+    public static <T> T doPostSync(RequestParams params, Class<T> responseCls) throws TaskException {
         try {
             return x.http().postSync(params, responseCls);
         } catch (SocketTimeoutException e) {
@@ -125,7 +126,47 @@ public class HttpUtil {
 
     public static <T> T uploadFile(RequestParams params, Class<T> responseCls) throws TaskException {
         try {
+            params.setMultipart(true);
             return x.http().postSync(params, responseCls);
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+            throw new TaskException(TaskException.TaskError.timeout.toString());
+        } catch (ConnectTimeoutException e) {
+            e.printStackTrace();
+            throw new TaskException(TaskException.TaskError.timeout.toString());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            throw new TaskException(TaskException.TaskError.timeout.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new TaskException(TaskException.TaskError.timeout.toString());
+        } catch (Throwable throwable) {
+            TaskException taskException = null;
+            if (throwable.getCause() instanceof TaskException) {
+                taskException = (TaskException) throwable.getCause();
+            } else if (throwable instanceof TaskException) {
+                taskException = (TaskException) throwable;
+            }
+            if (taskException != null) {
+                throw taskException;
+            }
+            throw new TaskException("", TextUtils.isEmpty(throwable.getMessage()) ? "服务器错误" : throwable.getMessage());
+        }
+    }
+
+
+    /**
+     * 下载文件
+     *
+     * @param params   请求参数
+     * @param filepath 保存路径
+     */
+    public static File downloadFile(RequestParams params, String filepath) throws TaskException {
+        //设置断点续传
+        params.setAutoResume(true);
+        params.setSaveFilePath(filepath);
+        try {
+            return x.http().getSync(params, File.class);
         } catch (SocketTimeoutException e) {
             e.printStackTrace();
             throw new TaskException(TaskException.TaskError.timeout.toString());

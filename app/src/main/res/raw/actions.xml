@@ -35,4 +35,9 @@
         <value>/user/uploadImg</value>
     </setting>
 
+    <setting type="downloadImg">
+        <des>下载用户头像</des>
+        <value>/user/downloadImg</value>
+    </setting>
+
 </app-settings>

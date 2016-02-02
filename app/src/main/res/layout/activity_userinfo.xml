@@ -82,6 +82,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_alignLeft="@id/left_line"
         android:layout_below="@id/user_grade"
         android:layout_centerInParent="true"
@@ -324,12 +325,13 @@
     </LinearLayout>
 
 
-    <ImageButton
+    <ImageView
         android:id="@+id/user_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
         android:src="@drawable/user_setting" />
 
     <View
@@ -340,8 +342,8 @@
         android:layout_marginTop="10dp"
         android:layout_toLeftOf="@id/user_setting"
         android:background="@color/colorAccent"
-        app:layout_marginTopPercent="95%"
-        app:layout_widthPercent="30%" />
+        app:layout_marginTopPercent="96%"
+        app:layout_widthPercent="35%" />
 
     <View
         android:id="@+id/right_line_bottom"
@@ -349,9 +351,23 @@
         android:layout_height="1dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/user_grade"
+        android:layout_toRightOf="@id/user_setting"
         android:background="@color/colorAccent"
-        app:layout_marginTopPercent="95%"
-        app:layout_widthPercent="30%" />
+        app:layout_marginTopPercent="96%"
+        app:layout_widthPercent="35%" />
+
+    <Button
+        android:id="@+id/tologin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="6%"
+        app:layout_widthPercent="45%"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:layout_marginBottomPercent="2%"
+        android:background="@color/colorPrimary"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:text="@string/go_to_login"/>
 
 </android.support.percent.PercentRelativeLayout>

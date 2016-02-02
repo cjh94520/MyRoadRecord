@@ -19,6 +19,7 @@ import com.smartman.myroadrecord.business.account.accountMgmt;
 import com.smartman.myroadrecord.business.account.bean.AccountBean;
 import com.smartman.myroadrecord.business.account.bean.AccountReturnBean;
 import com.smartman.myroadrecord.module.account.event.UserEvent;
+import com.smartman.myroadrecord.module.account.param.UserConst;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
@@ -94,11 +95,11 @@ public class LoginActivity extends BaseActivity {
         protected void onSuccess(AccountReturnBean s) {
             super.onSuccess(s);
             if (s.code == -1) {
-                ToastUtil.showMessage(ResourceUtil.getString(R.string.wrong_login));
+                ToastUtil.showMessage( ResourceUtil.getString(R.string.wrong_login));
             } else {
                 finish();
-                PrefsUtil.savePrefString("USER_NAME",s.data.getName());
-                PrefsUtil.savePrefBoolean("USER_LOGINED",true);
+                PrefsUtil.savePrefString(UserConst.USER_NAME,s.data.getName());
+                PrefsUtil.savePrefBoolean(UserConst.USER_LOGINED,true);
                 //刷新UserFragment
                 // 发布事件，在后台线程发的事件
                 EventBus.getDefault().post(new UserEvent());

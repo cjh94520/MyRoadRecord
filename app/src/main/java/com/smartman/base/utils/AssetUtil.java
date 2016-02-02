@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 /**
  * Created by jiahui.chen on 2015/12/29.
+ * 从Assets中获取各种资源
  */
 public class AssetUtil {
     public static String getFromAssets(String fileName) {

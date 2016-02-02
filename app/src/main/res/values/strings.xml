@@ -12,6 +12,8 @@
 
     <!-- base框架 模块-->
     <string name="close">关闭</string>
+    <string name="uploadingImg">上传图片中</string>
+    <string name="upload_fail">上传失败</string>
 
     <!-- 主页 -->
     <string name="time_record">时间神殿</string>
@@ -27,6 +29,7 @@
     <string name="register_tip">点击[完成]代表你已阅读并同意用户使用协议</string>
     <string name="access">进入</string>
     <string name="setting">设置</string>
+    <string name="go_to_login">去登录</string>
     <string name="welcome">欢迎加入足迹</string>
     <string name="invalid_phone">无效的手机号码</string>
     <string name="empty_phone">不存在该手机号码</string>

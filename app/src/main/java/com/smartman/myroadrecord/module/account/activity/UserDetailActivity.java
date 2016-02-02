@@ -23,16 +23,20 @@ import com.smartman.base.activity.BaseActivity;
 import com.smartman.base.task.TaskException;
 import com.smartman.base.task.WorkTask;
 import com.smartman.base.ui.CircleImageView;
+import com.smartman.base.utils.DialogUtil;
+import com.smartman.base.utils.ResourceUtil;
 import com.smartman.base.utils.SnackbarUtil;
 import com.smartman.base.utils.ToastUtil;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.business.account.accountMgmt;
+import com.smartman.myroadrecord.module.account.util.UserUtil;
 
 import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
@@ -135,12 +139,11 @@ public class UserDetailActivity extends BaseActivity {
                 ContentResolver cr = this.getContentResolver();
                 try {
                     Bitmap bmp = BitmapFactory.decodeStream(cr.openInputStream(uri));
-                    LogUtil.d("字节数：" + String.valueOf(bmp.getByteCount() / 1024.0 / 1024));
+                    //压缩大约有30倍
                     Bitmap target = ThumbnailUtils.extractThumbnail(bmp, imgView.getWidth(), imgView.getHeight(), ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
-                    LogUtil.d("字节数：" + String.valueOf(target.getByteCount() / 1024.0 / 1024));
                     bmp.recycle();
-                    imgView.setImageBitmap(target);
-                    new uploadImgTask().execute(uri.getPath());
+                    File file = UserUtil.saveBitmap2file(target);
+                    new uploadImgTask().execute(file.getPath());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -151,25 +154,38 @@ public class UserDetailActivity extends BaseActivity {
     }
 
     class uploadImgTask extends WorkTask<String, Void, Boolean> {
+        String mFilePath = null;
+
+        @Override
+        protected void onPrepare() {
+            super.onPrepare();
+            DialogUtil.showProgressDialog(UserDetailActivity.this, ResourceUtil.getString(R.string.uploadingImg), false);
+        }
+
         @Override
         public Boolean workInBackground(String... params) throws TaskException {
+            mFilePath = params[0];
             return new accountMgmt().uploadImg(params[0]);
         }
 
         @Override
         protected void onSuccess(Boolean s) {
             super.onSuccess(s);
+            Bitmap bmp = BitmapFactory.decodeFile(mFilePath);
+            imgView.setImageBitmap(bmp);
         }
 
         @Override
         protected void onFailure(TaskException exception) {
             super.onFailure(exception);
+            ToastUtil.showMessage(R.string.upload_fail);
             LogUtil.d(exception.getMessage());
         }
 
         @Override
         protected void onFinished() {
             super.onFinished();
+            DialogUtil.dismissNormalProgressDialog();
         }
     }
 
