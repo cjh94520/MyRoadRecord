@@ -164,6 +164,7 @@ public class RegisterActivity extends BaseActivity {
             //返回true代表该手机号码已经存在
             if (s) {
                 ToastUtil.showMessage(ResourceUtil.getString(R.string.phone_be_registered));
+                completeButton.setEnabled(true);
             } else {
                 new AccountTask().execute();
             }

@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.smartman.base.blur.util.FastBlur;
 import com.smartman.base.ui.CircleImageView;
-import com.smartman.base.utils.ImageUtil;
 import com.smartman.base.utils.PrefsUtil;
 import com.smartman.myroadrecord.R;
 import com.smartman.myroadrecord.base.fragment.ViewPageFragment;
@@ -27,7 +26,6 @@ import com.smartman.myroadrecord.module.account.activity.LoginActivity;
 import com.smartman.myroadrecord.module.account.activity.UserDetailActivity;
 import com.smartman.myroadrecord.module.account.event.UserEvent;
 import com.smartman.myroadrecord.module.account.param.UserConst;
-import com.smartman.myroadrecord.module.account.util.UserUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -71,7 +69,7 @@ public class UserFragment extends ViewPageFragment {
             //默认头像
             Userimg.setImageResource(R.drawable.girl);
         } else {
-            ImageUtil.displayImage(Userimg, UserUtil.getUserImgPath());
+            //ImageUtil.displayImage(Userimg, UserUtil.getUserImgPath());
         }
     }
 

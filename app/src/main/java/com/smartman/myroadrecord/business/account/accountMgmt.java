@@ -35,11 +35,11 @@ public class accountMgmt {
      * @return AccountBean
      * @Description: 检查手机号码是否存在
      */
-    public Boolean checkPhoneInfo(String phone) throws TaskException {
+    public Boolean checkPhoneInfo(String id) throws TaskException {
         String uri = ServerUtil.getServerUrl();
         uri += ServerUtil.getValue("checkPhoneInfo");
         RequestParams params = new RequestParams(uri);
-        params.addQueryStringParameter("phone", phone);
+        params.addQueryStringParameter("id", id);
         return HttpUtil.doGetSync(params, Boolean.class);
     }
 
