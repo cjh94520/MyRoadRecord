@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/user_name"
             android:layout_centerHorizontal="true"
-            android:text="初阶"
+            android:text=" ??"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -125,7 +125,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="233"
+                    android:text=" ??"
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp" />
 
@@ -172,7 +172,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2365.233333"
+                    android:text=" ??"
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp" />
 
@@ -218,7 +218,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.018234"
+                    android:text=" ??"
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp" />
 
@@ -264,7 +264,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
+                    android:text=" ??"
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp" />
 
@@ -310,7 +310,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="32"
+                    android:text=" ??"
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp" />
 
@@ -360,14 +360,14 @@
         android:id="@+id/tologin"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_heightPercent="6%"
-        app:layout_widthPercent="45%"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        app:layout_marginBottomPercent="2%"
+        android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
+        android:text="@string/go_to_login"
         android:textSize="16sp"
         android:visibility="gone"
-        android:text="@string/go_to_login"/>
+        app:layout_heightPercent="6%"
+        app:layout_marginBottomPercent="2%"
+        app:layout_widthPercent="45%" />
 
 </android.support.percent.PercentRelativeLayout>
