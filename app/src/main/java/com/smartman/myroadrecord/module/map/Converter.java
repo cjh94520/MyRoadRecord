@@ -9,6 +9,12 @@ package com.smartman.myroadrecord.module.map;
 public final class Converter {
 
     /**
+     * 私有构造函数
+     */
+    private Converter() {
+    }
+
+    /**
      * @param x Tile的x坐标
      * @param z 地图的zoom值
      * @return 对应Tile的Left所在的经度

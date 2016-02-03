@@ -21,10 +21,9 @@ import com.amap.api.maps.model.TileProvider;
 import com.smartman.base.activity.BaseActivity;
 import com.smartman.myroadrecord.R;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-// TODO 获取数据的方式。。线程 + AsyncTask 看你的记性吧。。
+import java.util.ArrayList;
+import java.util.List;
+// TODO 获取路径初始数据，看是否需要使用线程或者service 学微信的加载方式？
 public class MapActivity extends BaseActivity implements AMapLocationListener {
     private static final String TAG = MapActivity.class.getSimpleName();
     // 地图相关
@@ -45,6 +44,11 @@ public class MapActivity extends BaseActivity implements AMapLocationListener {
 
     // 临时数据
     private int zoom = 19;
+    private List<Route> routes = new ArrayList<Route>();
+    private String[] locationTypes = {"", "GPS定位结果", "前次结果,定位时间短或者两次距离移动不大", "", "前一段时间同样位置缓存结果",
+            "wifi，网络定位，比基站定位更好", "基站，网络定位", "", "离线"};
+
+    private int temp = 20000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class MapActivity extends BaseActivity implements AMapLocationListener {
         mMapView.onCreate(savedInstanceState);// 必须要写
         mAMap = mMapView.getMap();
         mAMap.setMapType(AMap.MAP_TYPE_SATELLITE); // 设置成卫星地图
+
         // 初始化定位相关
         initLocation();
 
@@ -77,19 +82,40 @@ public class MapActivity extends BaseActivity implements AMapLocationListener {
 
         // TODO 缓存大小看是否需要改变，因为这个缓存中大多缓存都是没用的，只有有路径的Tile才是有用的
         // TODO 通过remove 和 add tileOverlay 来实现刷新界面。
-        overlayOptions = new TileOverlayOptions().tileProvider(tileProvider).memoryCacheEnabled(true).memCacheSize(10 * 1024);
+        overlayOptions = new TileOverlayOptions().tileProvider(tileProvider).memoryCacheEnabled(true).memCacheSize(10
+                * 1024);
         tileOverlay = mAMap.addTileOverlay(overlayOptions);
+
+        // TODO 需删除，临时输出
+        mAMap.setOnMapClickListener(new AMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+//                for (int i = 0; i < routes.size(); i++) {
+//                    Log.d(TAG, "-->::LocationType = " + routes.get(i).LocationType + "  LatLng = " + routes.get(i)
+//                            .latLng);
+//                }
+//                if (temp == 20000) {
+//                    temp = 5000;
+//                    mLocationOption.setInterval(temp);
+//                    mLocationClient.setLocationOption(mLocationOption);
+//                } else {
+//                    temp = 20000;
+//                    mLocationOption.setInterval(temp);
+//                    mLocationClient.setLocationOption(mLocationOption);
+//                }
+            }
+        });
     }
 
     private void initLocation() {
+        mAMap.getUiSettings().setMyLocationButtonEnabled(true);
         mAMap.setMyLocationEnabled(true);
         mAMap.setMyLocationType(AMap.LOCATION_TYPE_LOCATE); // 设为单纯定位
         mLocationClient = new AMapLocationClient(getApplicationContext());
         mLocationClient.setLocationListener(this);
         mLocationOption = new AMapLocationClientOption();
         mLocationOption.setLocationMode(AMapLocationMode.Hight_Accuracy); // 高精度模式
-//        mLocationOption.setGpsFirst(true); // GPS优先
-        mLocationOption.setNeedAddress(false); // 不需要地址信息，省流量
+        mLocationOption.setNeedAddress(true); // 获取详细的地址消息
         mLocationOption.setInterval(20000);
         mLocationClient.setLocationOption(mLocationOption);
         mLocationClient.startLocation();
@@ -117,21 +143,31 @@ public class MapActivity extends BaseActivity implements AMapLocationListener {
     }
 
     @Override
-    public void onLocationChanged(AMapLocation aMapLocation) { // 主线程。。。。
+    public void onLocationChanged(AMapLocation aMapLocation) {
         if (aMapLocation != null) {
             if (aMapLocation.getErrorCode() == 0) {
-                Log.d(TAG, "-->::LocationType = " + aMapLocation.getLocationType());
-                Log.d(TAG, "-->::Latitude = " + aMapLocation.getLatitude());
-                Log.d(TAG, "-->::Longitude = " + aMapLocation.getLongitude());
-                SimpleDateFormat df  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date date = new Date(aMapLocation.getTime());
-                Log.d(TAG, "-->::Time = " + df.format(date));
+                switch (aMapLocation.getLocationType()) {
+                    case 2: // 前次结果，定位时间短或者两次距离移动不大
+                    case 4: // 前一段时间同样位置缓存的结果
+                        break; // 如果是2、 4不进行处理，直接过滤该点。
+                    case 1: // GPS 定位
+                        // TODO 看是否需要进行坐标转换
+                    case 5:
+                    case 6:
+                        // TODO 处理点，AsyncTask进行处理
+                        break;
+                    default: // 其他不合理的返回
+                        Log.d(TAG, "-->::eee ErrorLocationType:" + aMapLocation.getLocationType());
+                }
             } else {
-                Log.d(TAG, "-->::eee" + "\nErrorCode = " + aMapLocation.getErrorCode() + "\nErrorInfo = " + aMapLocation.getErrorInfo());
+                Log.d(TAG, "-->::eee ErrCode: " + aMapLocation.getErrorCode() + " ErrorInfo: " + aMapLocation
+                        .getErrorInfo());
+                // TODO 看是否需要Toast网络错误等信息
             }
         }
 
     }
+
 
     /**
      * 模糊Tile提供者
@@ -145,8 +181,9 @@ public class MapActivity extends BaseActivity implements AMapLocationListener {
 //                String[] tileY = Double.toString(Converter.lat2tiley(TestData.XLLatLon1.latitude, z)).split("\\.");
 //
 //                if (x == Integer.parseInt(tileX[0]) && y == Integer.parseInt(tileY[0])) {
-////                    return new Tile(mEraserSize, mEraserSize, mEraserFactory.getEraserBytes(Double.parseDouble("0." + tileX[1]), Double.parseDouble("0." + tileY[1])));
-                    return new Tile(mEraserSize, mEraserSize, mEraserFactory.getEraserBytes(x, y, z));
+////                    return new Tile(mEraserSize, mEraserSize, mEraserFactory.getEraserBytes(Double.parseDouble("0
+// ." + tileX[1]), Double.parseDouble("0." + tileY[1])));
+                return new Tile(mEraserSize, mEraserSize, mEraserFactory.getEraserBytes(x, y, z));
 //                }
             }
             return null;
