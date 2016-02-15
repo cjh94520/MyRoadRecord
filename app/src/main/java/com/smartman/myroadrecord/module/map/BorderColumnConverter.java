@@ -1,38 +1,36 @@
-package com.smartman.myroadrecord.module.map.fragment;
+package com.smartman.myroadrecord.module.map;
 
 import android.database.Cursor;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.smartman.myroadrecord.module.map.Location;
 
 import org.xutils.db.converter.ColumnConverter;
 import org.xutils.db.sqlite.ColumnDbType;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author chaohao.zhou
- * @Description: ArrayList 数据库列类型转换器
- * @date 2016/2/2 17:35
+ * @Description:
+ * @date 2016/2/15 11:07
  * @copyright TCL-MIE
  */
-public class ArrayListColumnConverter implements ColumnConverter<ArrayList> {
+public class BorderColumnConverter implements ColumnConverter<Border> {
 
-    private Type mType = new TypeToken<ArrayList>(){}.getType();
+    private Type mType = new TypeToken<Border>(){}.getType();
     private Gson mGson = new Gson();
 
     @Override
-    public ArrayList getFieldValue(Cursor cursor, int index) {
+    public Border getFieldValue(Cursor cursor, int index) {
         byte[] bytes = cursor.getBlob(index);
         String jsonString = new String(bytes);
         return mGson.fromJson(jsonString, mType);
     }
 
     @Override
-    public Object fieldValue2DbValue(ArrayList fieldValue) {
+    public Object fieldValue2DbValue(Border fieldValue) {
         String jsonString = mGson.toJson(fieldValue);
         return jsonString.getBytes();
     }

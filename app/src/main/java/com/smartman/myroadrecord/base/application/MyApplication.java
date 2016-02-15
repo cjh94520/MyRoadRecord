@@ -2,7 +2,9 @@ package com.smartman.myroadrecord.base.application;
 
 import com.smartman.base.application.XUtilApplication;
 import com.smartman.base.utils.PrefsUtil;
-import com.smartman.myroadrecord.module.map.fragment.ArrayListColumnConverter;
+import com.smartman.myroadrecord.module.map.LocationArrayListColumnConverter;
+import com.smartman.myroadrecord.module.map.Border;
+import com.smartman.myroadrecord.module.map.BorderColumnConverter;
 
 import org.xutils.db.converter.ColumnConverterFactory;
 
@@ -26,7 +28,11 @@ public class MyApplication extends XUtilApplication {
         return myApplication;
     }
 
+    /**
+     * 添加数据库列类型
+     */
     private void initDataBaseColumnConverter() {
-        ColumnConverterFactory.registerColumnConverter(ArrayList.class, new ArrayListColumnConverter());
+        ColumnConverterFactory.registerColumnConverter(ArrayList.class, new LocationArrayListColumnConverter());
+        ColumnConverterFactory.registerColumnConverter(Border.class, new BorderColumnConverter());
     }
 }

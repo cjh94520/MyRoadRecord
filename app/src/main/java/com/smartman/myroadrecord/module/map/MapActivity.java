@@ -90,19 +90,7 @@ public class MapActivity extends BaseActivity implements AMapLocationListener {
         mAMap.setOnMapClickListener(new AMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-//                for (int i = 0; i < routes.size(); i++) {
-//                    Log.d(TAG, "-->::LocationType = " + routes.get(i).LocationType + "  LatLng = " + routes.get(i)
-//                            .latLng);
-//                }
-//                if (temp == 20000) {
-//                    temp = 5000;
-//                    mLocationOption.setInterval(temp);
-//                    mLocationClient.setLocationOption(mLocationOption);
-//                } else {
-//                    temp = 20000;
-//                    mLocationOption.setInterval(temp);
-//                    mLocationClient.setLocationOption(mLocationOption);
-//                }
+
             }
         });
     }

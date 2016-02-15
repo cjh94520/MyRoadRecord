@@ -44,23 +44,25 @@ public class TestActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         mDbManager = x.getDb(DBUtil.daoConfig);
+        initData();
     }
 
     public void onButtonClick(View view) throws Exception {
         switch (view.getId()) {
             case R.id.button1:
-                Route route = new Route();
-                route.addLocation(location0);
-                mDbManager.save(route);
+                initData();
+                mDbManager.save(routes);
                 break;
             case R.id.button2:
-                List<Route> route1 = mDbManager.findAll(Route.class);
-                for (Route temp : route1) {
+                routes = mDbManager.findAll(Route.class);
+                for (Route temp : routes) {
                     Log.d(TAG, "-->::" + temp.toString());
                 }
                 break;
             case R.id.button3:
-                Log.d(TAG, "-->::" + locations.toString());
+                Route route = routes.get(2);
+                route.addLocation(location0);
+                mDbManager.saveOrUpdate(routes);
                 break;
             case R.id.button4:
                 mDbManager.dropTable(Route.class);
@@ -70,6 +72,19 @@ public class TestActivity extends Activity {
         }
     }
 
-
+    private void initData() {
+        routes = new ArrayList<Route>();
+        Route route = new Route();
+        route.addLocation(location0);
+        route.addLocation(location1);
+        routes.add(route);
+        route = new Route();
+        route.addLocation(location2);
+        route.addLocation(location3);
+        routes.add(route);
+        route = new Route();
+        route.addLocation(location4);
+        routes.add(route);
+    }
 
 }

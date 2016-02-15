@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
-        android:text="查看原始数据"/>
+        android:text="修改并插入"/>
 
     <Button
         android:id="@+id/button4"
